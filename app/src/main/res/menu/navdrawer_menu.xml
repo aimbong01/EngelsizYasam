@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/bookFragment"
+        android:icon="@drawable/ic_baseline_account_box_24"
+        android:title="Kitap"
+        android:textColor="@color/purple_700"/>
+    <item
+        android:id="@+id/makale"
+        android:icon="@drawable/ic_baseline_account_box_24"
+        android:title="Makale" />
+
+    <item
+        android:id="@+id/gunlukEgiticiIcerik"
+        android:icon="@drawable/ic_baseline_account_box_24"
+        android:title="Günlük Eğitici İçerik" />
+    <item
+        android:id="@+id/isaretdili"
+        android:icon="@drawable/ic_baseline_account_box_24"
+        android:title="İşaret Dili" />
+    <item
+        android:id="@+id/konusarakarama"
+        android:icon="@drawable/ic_baseline_account_box_24"
+        android:title="Konuşarak Arama" />
+</menu>

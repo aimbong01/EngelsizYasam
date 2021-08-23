@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="books"
+            type="com.engelsizyasam.bookDatabase.Books" />
+
+        <variable
+            name="clickListener"
+            type="com.engelsizyasam.book.SleepNightListener" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bookCardItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:foreground="?selectableItemBackground"
+        card_view:cardBackgroundColor="#FFFF"
+        card_view:cardCornerRadius="8dp"
+        card_view:contentPaddingBottom="5dp"
+        card_view:contentPaddingTop="5dp">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:onClick="@{() -> clickListener.onClick(books)}">
+
+
+            <TextView
+                android:id="@+id/kitapAdi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="TextView"
+                android:textSize="24sp"
+                android:textColor="@color/purple_700"
+
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintStart_toEndOf="@+id/kitapResmi"
+                card_view:layout_constraintTop_toTopOf="@+id/kitapResmi" />
+
+            <TextView
+                android:id="@+id/kitapYazari"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
+                android:text="TextView"
+                android:textColor="@color/purple_700"
+
+                card_view:layout_constraintBottom_toBottomOf="@+id/kitapResmi"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintStart_toEndOf="@+id/kitapResmi" />
+
+            <ImageView
+                android:id="@+id/kitapResmi"
+                android:layout_width="100dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="25dp"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/underline"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginTop="5dp"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintTop_toBottomOf="@+id/kitapResmi" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
