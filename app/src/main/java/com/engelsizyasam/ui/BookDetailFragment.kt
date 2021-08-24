@@ -1,4 +1,4 @@
-package com.engelsizyasam.bookdetail
+package com.engelsizyasam.ui
 
 import android.content.Context
 import androidx.lifecycle.ViewModelProvider
@@ -13,6 +13,8 @@ import androidx.navigation.fragment.navArgs
 import com.engelsizyasam.R
 import com.engelsizyasam.database.BookDatabase
 import com.engelsizyasam.databinding.BookDetailFragmentBinding
+import com.engelsizyasam.viewmodel.BookDetailViewModel
+import com.engelsizyasam.viewmodel.BookDetailViewModelFactory
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle
 
 class BookDetailFragment : Fragment() {
@@ -48,10 +50,6 @@ class BookDetailFragment : Fragment() {
                 .defaultPage(0)
                 .load()
         })
-
-
-
-
 
         return binding.root
     }

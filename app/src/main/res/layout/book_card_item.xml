@@ -10,7 +10,7 @@
 
         <variable
             name="clickListener"
-            type="com.engelsizyasam.book.SleepNightListener" />
+            type="com.engelsizyasam.adapter.SleepNightListener" />
 
     </data>
 

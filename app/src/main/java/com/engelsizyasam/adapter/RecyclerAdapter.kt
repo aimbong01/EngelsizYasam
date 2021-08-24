@@ -1,4 +1,4 @@
-package com.engelsizyasam.book
+package com.engelsizyasam.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

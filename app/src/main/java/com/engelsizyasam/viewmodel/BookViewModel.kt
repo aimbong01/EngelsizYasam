@@ -1,4 +1,4 @@
-package com.engelsizyasam.book
+package com.engelsizyasam.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

@@ -7,14 +7,14 @@
 
         <variable
             name="viewModel"
-            type="com.engelsizyasam.bookdetail.BookDetailViewModel" />
+            type="com.engelsizyasam.viewmodel.BookDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        tools:context=".bookdetail.BookDetailFragment">
+        tools:context=".ui.BookDetailFragment">
 
         <com.github.barteksc.pdfviewer.PDFView
             android:id="@+id/PDFView"

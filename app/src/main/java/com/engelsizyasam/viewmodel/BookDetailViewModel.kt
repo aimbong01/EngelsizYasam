@@ -1,7 +1,6 @@
-package com.engelsizyasam.bookdetail
+package com.engelsizyasam.viewmodel
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.engelsizyasam.database.BookDatabaseDao

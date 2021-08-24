@@ -1,4 +1,4 @@
-package com.engelsizyasam.book
+package com.engelsizyasam.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -11,8 +11,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.engelsizyasam.R
+import com.engelsizyasam.adapter.RecyclerAdapter
+import com.engelsizyasam.adapter.SleepNightListener
 import com.engelsizyasam.database.BookDatabase
 import com.engelsizyasam.databinding.BookFragmentBinding
+import com.engelsizyasam.viewmodel.BookViewModel
+import com.engelsizyasam.viewmodel.BookViewModelFactory
 
 class BookFragment : Fragment() {
 
