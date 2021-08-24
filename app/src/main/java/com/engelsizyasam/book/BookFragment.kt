@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.engelsizyasam.R
+import com.engelsizyasam.database.BookDatabase
 import com.engelsizyasam.databinding.BookFragmentBinding
 
 class BookFragment : Fragment() {
@@ -29,15 +30,26 @@ class BookFragment : Fragment() {
     ): View {
         val binding: BookFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.book_fragment, container, false)
 
-        val bookViewModel = ViewModelProvider(this).get(BookViewModel::class.java)
+        val application = requireNotNull(this.activity).application
+        val dataSource = BookDatabase.getInstance(application).bookDatabaseDao
+        val viewModelFactory = BookViewModelFactory(dataSource)
+
+        val bookViewModel = ViewModelProvider(this, viewModelFactory).get(BookViewModel::class.java)
+        binding.viewModel = bookViewModel
 
         val adapter = RecyclerAdapter(mcontext, SleepNightListener { bookId ->
-            //Toast.makeText(context, "${bookId}", Toast.LENGTH_LONG).show()
             bookViewModel.onBookClicked(bookId)
-
         })
-//        val adapter = RecyclerAdapter(mcontext)
+
         binding.recyclerView.adapter = adapter
+
+        bookViewModel.books.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.data = it
+            }
+        })
+
+        binding.setLifecycleOwner(this)
 
         bookViewModel.navigateToBookDetail.observe(viewLifecycleOwner, Observer { night ->
             night?.let {
@@ -45,10 +57,6 @@ class BookFragment : Fragment() {
                 bookViewModel.onBookDetailNavigated()
             }
         })
-
-
-
-
 
 
 
