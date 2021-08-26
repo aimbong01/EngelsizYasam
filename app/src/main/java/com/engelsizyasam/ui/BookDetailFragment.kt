@@ -19,14 +19,6 @@ import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle
 
 class BookDetailFragment : Fragment() {
 
-    lateinit var mcontext: Context
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        mcontext = context
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,9 +36,9 @@ class BookDetailFragment : Fragment() {
 
         binding.setLifecycleOwner(this)
 
-        viewModel.getBook().observe(viewLifecycleOwner, Observer{
+        viewModel.getBook().observe(viewLifecycleOwner, {
             binding.PDFView.fromAsset(it.bookPDF)
-                .scrollHandle(DefaultScrollHandle(mcontext))
+                .scrollHandle(DefaultScrollHandle(application))
                 .defaultPage(0)
                 .load()
         })

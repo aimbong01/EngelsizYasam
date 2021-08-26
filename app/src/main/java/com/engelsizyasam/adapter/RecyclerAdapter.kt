@@ -1,5 +1,6 @@
 package com.engelsizyasam.adapter
 
+import android.app.Application
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,9 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.engelsizyasam.database.BookModel
 import com.engelsizyasam.databinding.BookCardItemBinding
 
-class RecyclerAdapter(context: Context,val clickListener: SleepNightListener): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+class RecyclerAdapter(private val application: Application, private val clickListener: SleepNightListener): RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
-    val mcontext = context
     var data =  listOf<BookModel>()
         set(value) {
             field = value
@@ -21,7 +21,7 @@ class RecyclerAdapter(context: Context,val clickListener: SleepNightListener): R
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
-        holder.bind(item,mcontext,clickListener)
+        holder.bind(item,application,clickListener)
     }
 
     class ViewHolder private constructor(val binding: BookCardItemBinding) : RecyclerView.ViewHolder(binding.root){

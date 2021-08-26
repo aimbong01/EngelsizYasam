@@ -17,8 +17,6 @@ class WelcomePageFragment : Fragment() {
     ): View {
         val binding: WelcomePageFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.welcome_page_fragment, container, false)
 
-
-
         return binding.root
     }
 }

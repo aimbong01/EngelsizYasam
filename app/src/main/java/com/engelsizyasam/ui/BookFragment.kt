@@ -20,14 +20,6 @@ import com.engelsizyasam.viewmodel.BookViewModelFactory
 
 class BookFragment : Fragment() {
 
-    lateinit var mcontext: Context
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        mcontext = context
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,13 +33,13 @@ class BookFragment : Fragment() {
         val bookViewModel = ViewModelProvider(this, viewModelFactory).get(BookViewModel::class.java)
         binding.viewModel = bookViewModel
 
-        val adapter = RecyclerAdapter(mcontext, SleepNightListener { bookId ->
+        val adapter = RecyclerAdapter(application, SleepNightListener { bookId ->
             bookViewModel.onBookClicked(bookId)
         })
 
         binding.recyclerView.adapter = adapter
 
-        bookViewModel.books.observe(viewLifecycleOwner, Observer {
+        bookViewModel.books.observe(viewLifecycleOwner, {
             it?.let {
                 adapter.data = it
             }
@@ -55,7 +47,7 @@ class BookFragment : Fragment() {
 
         binding.setLifecycleOwner(this)
 
-        bookViewModel.navigateToBookDetail.observe(viewLifecycleOwner, Observer { night ->
+        bookViewModel.navigateToBookDetail.observe(viewLifecycleOwner, { night ->
             night?.let {
                 this.findNavController().navigate(BookFragmentDirections.actionBookFragmentToBookDetailFragment(night))
                 bookViewModel.onBookDetailNavigated()

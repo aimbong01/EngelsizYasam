@@ -9,24 +9,32 @@
         android:id="@+id/welcomePageFragment"
         android:name="com.engelsizyasam.ui.WelcomePageFragment"
         android:label="Engelsiz Yaşam"
-        tools:layout="@layout/welcome_page_fragment" >
+        tools:layout="@layout/welcome_page_fragment">
         <action
             android:id="@+id/action_welcomePageFragment_to_bookFragment"
-            app:destination="@id/bookFragment" />
+            app:destination="@id/bookFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/bookFragment"
         android:name="com.engelsizyasam.ui.BookFragment"
         android:label="Kitaplar"
-        tools:layout="@layout/book_fragment" >
+        tools:layout="@layout/book_fragment">
         <action
             android:id="@+id/action_bookFragment_to_bookDetailFragment"
-            app:destination="@id/bookDetailFragment" />
+            app:destination="@id/bookDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/bookDetailFragment"
         android:name="com.engelsizyasam.ui.BookDetailFragment"
-        android:label="Kitap Detayı" >
+        android:label="Kitap Detayı">
         <argument
             android:name="bookId"
             app:argType="integer" />

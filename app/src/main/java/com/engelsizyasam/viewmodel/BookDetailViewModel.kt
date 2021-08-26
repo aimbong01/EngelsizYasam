@@ -11,12 +11,8 @@ class BookDetailViewModel(bookId: Int, dataSource: BookDatabaseDao) : ViewModel(
 
     val database = dataSource
     private val viewModelJob = Job()
-    private val book: LiveData<BookModel>
+    private val book: LiveData<BookModel> = database.getBookWithId(bookId)
     fun getBook() = book
-
-    init {
-        book = database.getBookWithId(bookId)
-    }
 
     override fun onCleared() {
         super.onCleared()
