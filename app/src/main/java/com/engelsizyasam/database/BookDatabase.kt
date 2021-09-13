@@ -2,6 +2,7 @@ package com.engelsizyasam.database
 
 import android.content.Context
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 
 @Dao
@@ -23,10 +24,10 @@ interface BookDatabaseDao {
     suspend fun clear()
 }
 
-
 @Database(entities = [BookModel::class], version = 1, exportSchema = false)
 abstract class BookDatabase : RoomDatabase() {
     abstract val bookDatabaseDao: BookDatabaseDao
+
     companion object {
         @Volatile
         private var INSTANCE: BookDatabase? = null
@@ -39,8 +40,8 @@ abstract class BookDatabase : RoomDatabase() {
 
                 if (instance == null) {
                     instance = Room.databaseBuilder(context.applicationContext, BookDatabase::class.java, "sleep_history_database")
-                            .fallbackToDestructiveMigration()
-                            .build()
+                        .fallbackToDestructiveMigration()
+                        .build()
                     INSTANCE = instance
                 }
                 return instance

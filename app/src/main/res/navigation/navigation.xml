@@ -3,26 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/welcomePageFragment">
+    app:startDestination="@id/mainFragment">
+
 
     <fragment
-        android:id="@+id/welcomePageFragment"
-        android:name="com.engelsizyasam.ui.WelcomePageFragment"
-        android:label="Engelsiz Yaşam"
-        tools:layout="@layout/welcome_page_fragment">
-        <action
-            android:id="@+id/action_welcomePageFragment_to_bookFragment"
-            app:destination="@id/bookFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-    </fragment>
+        android:id="@+id/mainFragment"
+        android:name="com.engelsizyasam.ui.MainFragment"
+        android:label="Anasayfa" />
     <fragment
         android:id="@+id/bookFragment"
         android:name="com.engelsizyasam.ui.BookFragment"
         android:label="Kitaplar"
-        tools:layout="@layout/book_fragment">
+        tools:layout="@layout/fragment_book">
         <action
             android:id="@+id/action_bookFragment_to_bookDetailFragment"
             app:destination="@id/bookDetailFragment"
@@ -34,10 +26,39 @@
     <fragment
         android:id="@+id/bookDetailFragment"
         android:name="com.engelsizyasam.ui.BookDetailFragment"
-        android:label="Kitap Detayı">
+        android:label="Kitap">
         <argument
             android:name="bookId"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/seriesDetailFragment"
+        android:name="com.engelsizyasam.ui.SeriesDetailFragment"
+        android:label="Günlük Eğitici İçerik"
+        tools:layout="@layout/fragment_series_detail">
+        <argument
+            android:name="playlistId"
+            app:argType="string" />
+        <argument
+            android:name="seriesName"
+            app:argType="string" />
+        <argument
+            android:name="seriesPage"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/seriesFragment"
+        android:name="com.engelsizyasam.ui.SeriesFragment"
+        android:label="fragment_series"
+        tools:layout="@layout/fragment_series">
+        <action
+            android:id="@+id/action_seriesFragment_to_seriesDetailFragment"
+            app:destination="@id/seriesDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
 </navigation>
 

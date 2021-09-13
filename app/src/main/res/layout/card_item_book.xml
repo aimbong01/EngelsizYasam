@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="bookModel"
             type="com.engelsizyasam.database.BookModel" />
 
         <variable
             name="clickListener"
-            type="com.engelsizyasam.adapter.SleepNightListener" />
-
+            type="com.engelsizyasam.adapter.BookListener" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -19,28 +19,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:foreground="?selectableItemBackground"
-        card_view:cardBackgroundColor="#FFFF"
-        card_view:cardCornerRadius="8dp"
-        card_view:contentPaddingBottom="5dp"
-        card_view:contentPaddingTop="5dp">
+        card_view:cardBackgroundColor="@color/content"
+        card_view:cardCornerRadius="0dp"
+        card_view:contentPaddingBottom="1dp"
+        card_view:contentPaddingTop="1dp">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
-            android:onClick="@{() -> clickListener.onClick(bookModel)}">
+            android:background="@color/bg"
+            android:onClick="@{() -> clickListener.onClick(bookModel)}"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
 
 
-            <TextView
+
+        <TextView
                 android:id="@+id/kitapAdi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:text="TextView"
                 android:textSize="24sp"
-                android:textColor="@color/purple_700"
+                android:textColor="@color/text"
 
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintStart_toEndOf="@+id/kitapResmi"
@@ -52,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
                 android:text="TextView"
-                android:textColor="@color/purple_700"
+                android:textColor="@color/text"
 
                 card_view:layout_constraintBottom_toBottomOf="@+id/kitapResmi"
                 card_view:layout_constraintEnd_toEndOf="parent"
@@ -67,14 +69,6 @@
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@tools:sample/avatars" />
-
-            <ImageView
-                android:id="@+id/underline"
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:layout_marginTop="5dp"
-                card_view:layout_constraintBottom_toBottomOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@+id/kitapResmi" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

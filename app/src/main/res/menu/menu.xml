@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bookFragment"
+        android:icon="@drawable/menu_book"
+        android:title="@string/kitap" />
+    <item
+        android:id="@+id/mainFragment"
+        android:icon="@drawable/menu_home"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/seriesFragment"
+        android:icon="@drawable/menu_content"
+        android:title="@string/dizi" />
+
+</menu>

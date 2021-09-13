@@ -4,9 +4,12 @@
     <string name="close">Close</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="kitap">Kitap</string>
-    <string name="makale">Makale</string>
-    <string name="gunlukegiticiicerik">Günlük Eğitici İçerik</string>
+    <string name="kitap">KİTAP</string>
+    <string name="makale">MAKALE</string>
+    <string name="gunlukegiticiicerik">GÜNLÜK İÇERİK</string>
     <string name="konusarakarama">Konuşarak Arama</string>
     <string name="isaretdili">İşaret Dili</string>
+    <string name="ozkansaka">Özkan SAKA</string>
+    <string name="home">HOME</string>
+    <string name="dizi">Dizi</string>
 </resources>
