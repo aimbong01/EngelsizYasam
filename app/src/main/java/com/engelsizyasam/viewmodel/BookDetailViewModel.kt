@@ -4,13 +4,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.engelsizyasam.database.BookDatabaseDao
-import com.engelsizyasam.database.BookModel
+import com.engelsizyasam.model.BookModel
 
 class BookDetailViewModel(bookId: Int, dataSource: BookDatabaseDao) : ViewModel() {
 
     val database = dataSource
     private val book: LiveData<BookModel> = database.getBookWithId(bookId)
     fun getBook() = book
+
+    suspend fun updatePage(bookId: Int, page: Int) {
+        database.updatePage(bookId,page)
+    }
 
 
 }

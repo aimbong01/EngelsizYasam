@@ -7,7 +7,7 @@
 
         <variable
             name="bookModel"
-            type="com.engelsizyasam.database.BookModel" />
+            type="com.engelsizyasam.model.BookModel" />
 
         <variable
             name="clickListener"
@@ -34,16 +34,16 @@
             android:paddingTop="10dp">
 
 
-
-        <TextView
+            <TextView
                 android:id="@+id/kitapAdi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:text="TextView"
-                android:textSize="24sp"
                 android:textColor="@color/text"
+                android:textSize="20sp"
 
+                android:textStyle="bold"
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintStart_toEndOf="@+id/kitapResmi"
                 card_view:layout_constraintTop_toTopOf="@+id/kitapResmi" />
@@ -56,6 +56,7 @@
                 android:text="TextView"
                 android:textColor="@color/text"
 
+                android:textSize="16sp"
                 card_view:layout_constraintBottom_toBottomOf="@+id/kitapResmi"
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintStart_toEndOf="@+id/kitapResmi" />

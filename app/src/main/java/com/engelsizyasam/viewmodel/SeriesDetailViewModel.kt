@@ -4,7 +4,7 @@ import android.app.Application
 import android.widget.Toast
 import androidx.lifecycle.*
 import com.engelsizyasam.network.ContentApi
-import com.engelsizyasam.network.SeriesModel
+import com.engelsizyasam.model.SeriesDetailModel
 import kotlinx.coroutines.launch
 
 class SeriesDetailViewModel(private val application: Application, private val playlistId: String) : ViewModel() {
@@ -13,8 +13,8 @@ class SeriesDetailViewModel(private val application: Application, private val pl
     var seriesPage: Int = 1
     var pageToken: List<String> = listOf("EAEaBlBUOkNESQ", "EAAaBlBUOkNESQ", "EAAaBlBUOkNHUQ", "EAAaB1BUOkNKWUI")
 
-    private val _properties = MutableLiveData<List<SeriesModel.İtem>>()
-    val properties: LiveData<List<SeriesModel.İtem>>
+    private val _properties = MutableLiveData<List<SeriesDetailModel.İtem>>()
+    val properties: LiveData<List<SeriesDetailModel.İtem>>
         get() = _properties
 
     fun run() {

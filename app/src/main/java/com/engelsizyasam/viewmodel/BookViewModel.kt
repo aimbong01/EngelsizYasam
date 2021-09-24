@@ -3,10 +3,8 @@ package com.engelsizyasam.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
 import com.engelsizyasam.database.BookDatabaseDao
-import com.engelsizyasam.database.BookModel
-import kotlinx.coroutines.launch
+import com.engelsizyasam.model.BookModel
 
 class BookViewModel(dataSource: BookDatabaseDao) : ViewModel() {
 

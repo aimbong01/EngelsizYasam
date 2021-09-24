@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="scholarModel"
+            type="com.engelsizyasam.model.ScholarModel.OrganicResult" />
+
+        <variable
+            name="clickListener"
+            type="com.engelsizyasam.adapter.ScholarListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_item_line"
+        android:onClick="@{() -> clickListener.onClick(scholarModel)}"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/makaleAdi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textColor="@color/text"
+            android:textSize="18sp"
+
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/makaleAciklama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="TextView"
+
+            android:textColor="@color/text"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="@+id/makaleAdi"
+            app:layout_constraintStart_toStartOf="@+id/makaleAdi"
+            app:layout_constraintTop_toBottomOf="@+id/makaleAdi" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

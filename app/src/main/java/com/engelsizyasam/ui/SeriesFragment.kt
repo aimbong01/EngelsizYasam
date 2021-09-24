@@ -12,25 +12,25 @@ import com.engelsizyasam.R
 import com.engelsizyasam.adapter.SeriesAdapter
 import com.engelsizyasam.adapter.SeriesListener
 import com.engelsizyasam.databinding.FragmentSeriesBinding
-import com.engelsizyasam.model.SeriesCardModel
+import com.engelsizyasam.model.SeriesModel
 import com.engelsizyasam.viewmodel.SeriesViewModel
 
 class SeriesFragment : Fragment() {
 
-    private val seriesList: ArrayList<SeriesCardModel> = arrayListOf()
+    private val seriesList: ArrayList<SeriesModel> = arrayListOf()
     private var seriesName: String = ""
     private var seriesPage: Int = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        seriesList.add(SeriesCardModel("PL_VIYA-L9VnISXsjCYfyeVYLsuZeY-D__", "Diriliş Ertuğrul", 4, "dirilisertugrul"))
-        seriesList.add(SeriesCardModel("PL_VIYA-L9VnIoZJjL1YaJGmmfw7nI8-A5", "Teşkilat", 1, "teskilat"))
-        seriesList.add(SeriesCardModel("PL_VIYA-L9VnKL00e3LGd5IBurT2SUvAVL", "Gönül Dağı", 1, "gonuldagi"))
-        seriesList.add(SeriesCardModel("PL_VIYA-L9VnJ6kLMdj4xC554TLhBsW6-l", "Masumlar Apartmani", 1, "masumlarapartmani"))
-        seriesList.add(SeriesCardModel("PL_VIYA-L9VnIEw36Mw-wtN7ydYHvpVFbK", "Aslan Ailem", 1, "aslanailem"))
-        seriesList.add(SeriesCardModel("PL_VIYA-L9VnL0tyGydgGCBCxGpx5gutV7", "Yunus Emre", 1, "yunusemre"))
-        seriesList.add(SeriesCardModel("PL_VIYA-L9VnKIJBMMROXc5-7Sl15-oUU_", "Yeşil Deniz", 2, "yesildeniz"))
-        seriesList.add(SeriesCardModel("PL_VIYA-L9VnKTrFDAWpAUlm9FcVNOxn02", "Adını Sen Koy", 4, "adinisenkoy"))
-        seriesList.add(SeriesCardModel("PL_VIYA-L9VnKSTAuwyPsyjVh4vQ_RekNe", "Payitaht Abdulhamid", 4, "payitaht"))
+        seriesList.add(SeriesModel("PL_VIYA-L9VnISXsjCYfyeVYLsuZeY-D__", "Diriliş Ertuğrul", 4, "dirilisertugrul"))
+        seriesList.add(SeriesModel("PL_VIYA-L9VnIoZJjL1YaJGmmfw7nI8-A5", "Teşkilat", 1, "teskilat"))
+        seriesList.add(SeriesModel("PL_VIYA-L9VnKL00e3LGd5IBurT2SUvAVL", "Gönül Dağı", 1, "gonuldagi"))
+        seriesList.add(SeriesModel("PL_VIYA-L9VnJ6kLMdj4xC554TLhBsW6-l", "Masumlar Apartmani", 1, "masumlarapartmani"))
+        seriesList.add(SeriesModel("PL_VIYA-L9VnIEw36Mw-wtN7ydYHvpVFbK", "Aslan Ailem", 1, "aslanailem"))
+        seriesList.add(SeriesModel("PL_VIYA-L9VnL0tyGydgGCBCxGpx5gutV7", "Yunus Emre", 1, "yunusemre"))
+        seriesList.add(SeriesModel("PL_VIYA-L9VnKIJBMMROXc5-7Sl15-oUU_", "Yeşil Deniz", 2, "yesildeniz"))
+        seriesList.add(SeriesModel("PL_VIYA-L9VnKTrFDAWpAUlm9FcVNOxn02", "Adını Sen Koy", 4, "adinisenkoy"))
+        seriesList.add(SeriesModel("PL_VIYA-L9VnKSTAuwyPsyjVh4vQ_RekNe", "Payitaht Abdulhamid", 4, "payitaht"))
 
         super.onCreate(savedInstanceState)
     }

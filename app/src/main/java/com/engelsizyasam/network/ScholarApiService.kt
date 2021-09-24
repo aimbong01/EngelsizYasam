@@ -1,6 +1,6 @@
 package com.engelsizyasam.network
 
-import com.engelsizyasam.model.SeriesDetailModel
+import com.engelsizyasam.model.ScholarModel
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -9,7 +9,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 
-private const val BASE_URL = "https://www.googleapis.com/youtube/v3/"
+private const val BASE_URL = "https://serpapi.com/"
 private const val api = ""
 
 private val moshi = Moshi.Builder()
@@ -21,19 +21,17 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
-interface ContentApiService {
+interface ScholarApiService {
 
-    @GET("playlistItems")
+    @GET("search.json")
     suspend fun getProperties(
-        @Query("pageToken") pageToken: String?,
-        @Query("maxResults") maxResults: String,
-        @Query("part") part: String,
-        @Query("playlistId") playlistId: String,
-        @Query("key") key: String = api
-
-    ): SeriesDetailModel
+        @Query("start") start: String,
+        @Query("engine") engine: String,
+        @Query("q") q: String,
+        @Query("api_key") api_key: String = api
+    ): ScholarModel
 }
 
-object ContentApi {
-    val retrofitService: ContentApiService = retrofit.create(ContentApiService::class.java)
+object ScholarApi {
+    val retrofitService: ScholarApiService = retrofit.create(ScholarApiService::class.java)
 }

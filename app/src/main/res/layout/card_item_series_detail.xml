@@ -4,24 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
-            name="seriesModel"
-            type="com.engelsizyasam.network.SeriesModel.İtem" />
+            name="seriesDetailModel"
+            type="com.engelsizyasam.model.SeriesDetailModel.İtem" />
 
         <variable
             name="clickListener"
             type="com.engelsizyasam.adapter.SeriesDetailListener" />
     </data>
 
-
-
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/bg"
-            android:onClick="@{() -> clickListener.onClick(seriesModel)}"
+            android:onClick="@{() -> clickListener.onClick(seriesDetailModel)}"
             android:paddingBottom="10dp"
             android:paddingTop="10dp">
 

@@ -14,11 +14,22 @@ import com.engelsizyasam.database.BookDatabase
 import com.engelsizyasam.databinding.FragmentBookDetailBinding
 import com.engelsizyasam.viewmodel.BookDetailViewModel
 import com.engelsizyasam.viewmodel.BookDetailViewModelFactory
+import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener
+import com.github.barteksc.pdfviewer.listener.OnPageChangeListener
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.content.SharedPreferences
+import android.util.Log
+import androidx.lifecycle.lifecycleScope
+import com.engelsizyasam.model.BookModel
+import kotlinx.coroutines.launch
 
-class BookDetailFragment : Fragment() {
+class BookDetailFragment : Fragment(), OnPageChangeListener {
 
+    var pageNumber = 0
+    var bookId = 0
+
+    lateinit var viewModel:BookDetailViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,7 +42,7 @@ class BookDetailFragment : Fragment() {
 
         val viewModelFactory = BookDetailViewModelFactory(arguments.bookId, dataSource)
 
-        val viewModel = ViewModelProvider(this, viewModelFactory).get(BookDetailViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(BookDetailViewModel::class.java)
         binding.viewModel = viewModel
 
         binding.lifecycleOwner = this
@@ -39,8 +50,11 @@ class BookDetailFragment : Fragment() {
 
 
         viewModel.getBook().observe(viewLifecycleOwner, {
+            bookId = it.bookId
             binding.PDFView.fromAsset(it.bookPDF)
-                .defaultPage(0)
+                .defaultPage(it.bookPage)
+                .onPageChange(this)
+                .enableAnnotationRendering(true)
                 .scrollHandle(DefaultScrollHandle(application))
                 .load()
         })
@@ -49,6 +63,9 @@ class BookDetailFragment : Fragment() {
         navBar.visibility = View.INVISIBLE
 
         binding.backButton.setOnClickListener {
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewModel.updatePage(bookId, pageNumber)
+            }
             it.findNavController().popBackStack()
         }
 
@@ -56,9 +73,18 @@ class BookDetailFragment : Fragment() {
     }
 
     override fun onPause() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.updatePage(bookId, pageNumber)
+        }
+
         val navBar: BottomNavigationView = requireActivity().findViewById(R.id.bottomBar)
         navBar.visibility = View.VISIBLE
         super.onPause()
+    }
+
+    override fun onPageChanged(page: Int, pageCount: Int) {
+        pageNumber = page
+        Log.d("page", page.toString())
     }
 
 }

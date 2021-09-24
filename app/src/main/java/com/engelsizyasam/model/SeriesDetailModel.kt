@@ -1,10 +1,10 @@
-package com.engelsizyasam.network
+package com.engelsizyasam.model
 
 
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class SeriesModel(
+data class SeriesDetailModel(
     val kind: String = "",
     val etag: String = "",
     val nextPageToken: String = "",

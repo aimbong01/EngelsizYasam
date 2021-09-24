@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import androidx.recyclerview.widget.RecyclerView
-import com.engelsizyasam.database.BookModel
+import com.engelsizyasam.model.BookModel
 import com.engelsizyasam.databinding.CardItemBookBinding
 
 class BookAdapter(private val application: Application, private val clickListener: BookListener) :

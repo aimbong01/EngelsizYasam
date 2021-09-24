@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
+import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -14,7 +14,7 @@ import com.engelsizyasam.R
 import com.engelsizyasam.adapter.BookAdapter
 import com.engelsizyasam.adapter.BookListener
 import com.engelsizyasam.database.BookDatabase
-import com.engelsizyasam.database.BookModel
+import com.engelsizyasam.model.BookModel
 import com.engelsizyasam.databinding.FragmentBookBinding
 import com.engelsizyasam.viewmodel.BookViewModel
 import com.engelsizyasam.viewmodel.BookViewModelFactory

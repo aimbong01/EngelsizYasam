@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.engelsizyasam.R
 import com.engelsizyasam.databinding.CardItemSeriesDetailBinding
-import com.engelsizyasam.network.SeriesModel
+import com.engelsizyasam.model.SeriesDetailModel
 import com.squareup.picasso.Picasso
 
 class SeriesDetailAdapter(private val clickListener: SeriesDetailListener) : RecyclerView.Adapter<SeriesDetailAdapter.ViewHolder>() {
 
-    var data = listOf<SeriesModel.İtem>()
+    var data = listOf<SeriesDetailModel.İtem>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -23,8 +23,8 @@ class SeriesDetailAdapter(private val clickListener: SeriesDetailListener) : Rec
 
     class ViewHolder private constructor(val binding: CardItemSeriesDetailBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: SeriesModel.İtem, clickListener: SeriesDetailListener) {
-            binding.seriesModel = item
+        fun bind(item: SeriesDetailModel.İtem, clickListener: SeriesDetailListener) {
+            binding.seriesDetailModel = item
             binding.title.text = item.snippet.title
             try {
                 Picasso.get().load(item.snippet.thumbnails.medium.url).into(binding.image)
@@ -54,5 +54,5 @@ class SeriesDetailAdapter(private val clickListener: SeriesDetailListener) : Rec
 }
 
 class SeriesDetailListener(val clickListener: (link: String) -> Unit) {
-    fun onClick(seriesModel: SeriesModel.İtem) = clickListener(seriesModel.snippet.resourceId.videoId)
+    fun onClick(seriesDetailModel: SeriesDetailModel.İtem) = clickListener(seriesDetailModel.snippet.resourceId.videoId)
 }

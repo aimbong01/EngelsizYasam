@@ -13,4 +13,10 @@
         android:icon="@drawable/menu_content"
         android:title="@string/dizi" />
 
+    <item
+        android:id="@+id/scholarFragment"
+        android:icon="@drawable/menu_content"
+        android:title="@string/makale" />
+
+
 </menu>

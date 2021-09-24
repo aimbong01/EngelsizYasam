@@ -2,17 +2,20 @@ package com.engelsizyasam.database
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.room.*
+import com.engelsizyasam.model.BookModel
 
 @Dao
 interface BookDatabaseDao {
 
     @Insert
-    suspend fun insert(night: BookModel)
+    suspend fun insert(book: BookModel)
 
     @Update
-    suspend fun update(night: BookModel)
+    suspend fun update(book: BookModel)
+
+    @Query("UPDATE book_table SET book_page = :page WHERE bookId = :bookId")
+    suspend fun updatePage(bookId: Int, page: Int)
 
     @Query("SELECT * FROM book_table ORDER BY bookId ASC")
     fun getAllBooks(): LiveData<List<BookModel>>
@@ -39,7 +42,7 @@ abstract class BookDatabase : RoomDatabase() {
                 var instance = INSTANCE
 
                 if (instance == null) {
-                    instance = Room.databaseBuilder(context.applicationContext, BookDatabase::class.java, "sleep_history_database")
+                    instance = Room.databaseBuilder(context.applicationContext, BookDatabase::class.java, "book_database")
                         .fallbackToDestructiveMigration()
                         .build()
                     INSTANCE = instance

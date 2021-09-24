@@ -3,11 +3,27 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/PEAKY/AndroidStudioProjects/EngelsizYasam/app/src/main/res/drawable/selector_back_button.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/PEAKY/AndroidStudioProjects/EngelsizYasam/app/src/main/res/drawable/selector_instagram.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/PEAKY/AndroidStudioProjects/EngelsizYasam/app/src/main/res/drawable/selector_menu.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/PEAKY/AndroidStudioProjects/EngelsizYasam/app/src/main/res/drawable/selector_twitter.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/PEAKY/AndroidStudioProjects/EngelsizYasam/app/src/main/res/drawable/selector_youtube.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/PEAKY/AndroidStudioProjects/EngelsizYasam/app/src/main/res/drawable/shape_header.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/PEAKY/AndroidStudioProjects/EngelsizYasam/app/src/main/res/drawable/shape_item_line.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/PEAKY/AndroidStudioProjects/EngelsizYasam/app/src/main/res/drawable/shape_mini_table.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/PEAKY/AndroidStudioProjects/EngelsizYasam/app/src/main/res/drawable/shape_progress.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/PEAKY/AndroidStudioProjects/EngelsizYasam/app/src/main/res/drawable/shape_search.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/PEAKY/AndroidStudioProjects/EngelsizYasam/app/src/main/res/layout/activity_register.xml" value="0.209375" />
         <entry key="..\:/Users/PEAKY/AndroidStudioProjects/EngelsizYasam/app/src/main/res/layout/activity_splash.xml" value="0.209375" />
+        <entry key="..\:/Users/PEAKY/AndroidStudioProjects/EngelsizYasam/app/src/main/res/layout/card_item_book.xml" value="0.209375" />
+        <entry key="..\:/Users/PEAKY/AndroidStudioProjects/EngelsizYasam/app/src/main/res/layout/card_item_scholar.xml" value="0.209375" />
+        <entry key="..\:/Users/PEAKY/AndroidStudioProjects/EngelsizYasam/app/src/main/res/layout/fragment_book.xml" value="0.18" />
         <entry key="..\:/Users/PEAKY/AndroidStudioProjects/EngelsizYasam/app/src/main/res/layout/fragment_book_detail.xml" value="0.209375" />
-        <entry key="..\:/Users/PEAKY/AndroidStudioProjects/EngelsizYasam/app/src/main/res/layout/fragment_main.xml" value="0.209375" />
+        <entry key="..\:/Users/PEAKY/AndroidStudioProjects/EngelsizYasam/app/src/main/res/layout/fragment_main.xml" value="0.25" />
+        <entry key="..\:/Users/PEAKY/AndroidStudioProjects/EngelsizYasam/app/src/main/res/layout/fragment_scholar.xml" value="0.209375" />
+        <entry key="..\:/Users/PEAKY/AndroidStudioProjects/EngelsizYasam/app/src/main/res/layout/fragment_scholar_detail.xml" value="0.209375" />
+        <entry key="..\:/Users/PEAKY/AndroidStudioProjects/EngelsizYasam/app/src/main/res/layout/fragment_series.xml" value="0.209375" />
+        <entry key="..\:/Users/PEAKY/AndroidStudioProjects/EngelsizYasam/app/src/main/res/layout/fragment_series_detail.xml" value="0.209375" />
       </map>
     </option>
   </component>

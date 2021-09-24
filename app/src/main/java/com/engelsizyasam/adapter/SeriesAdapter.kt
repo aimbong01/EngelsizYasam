@@ -5,12 +5,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.engelsizyasam.databinding.CardItemSeriesBinding
-import com.engelsizyasam.model.SeriesCardModel
-import com.engelsizyasam.network.SeriesModel
+import com.engelsizyasam.model.SeriesModel
 
 class SeriesAdapter(private val application: Application, private val clickListener: SeriesListener) : RecyclerView.Adapter<SeriesAdapter.ViewHolder>() {
 
-    var data = arrayListOf<SeriesCardModel>()
+    var data = arrayListOf<SeriesModel>()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
@@ -19,8 +18,8 @@ class SeriesAdapter(private val application: Application, private val clickListe
 
     class ViewHolder private constructor(val binding: CardItemSeriesBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: SeriesCardModel, application: Application, clickListener: SeriesListener) {
-            binding.seriesCardModel = item
+        fun bind(item: SeriesModel, application: Application, clickListener: SeriesListener) {
+            binding.seriesModel = item
             val id = application.resources.getIdentifier("com.engelsizyasam:drawable/series_${item.seriesImage}", null, null)
             binding.image.setImageResource(id)
             binding.clickListener = clickListener
@@ -45,5 +44,5 @@ class SeriesAdapter(private val application: Application, private val clickListe
 }
 
 class SeriesListener(val clickListener: (link: String, link2: String, link3: Int) -> Unit) {
-    fun onClick(seriesModel: SeriesCardModel) = clickListener(seriesModel.seriesId, seriesModel.seriesName, seriesModel.seriesPage)
+    fun onClick(seriesModel: SeriesModel) = clickListener(seriesModel.seriesId, seriesModel.seriesName, seriesModel.seriesPage)
 }

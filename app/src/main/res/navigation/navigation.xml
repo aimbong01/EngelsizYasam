@@ -59,6 +59,24 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+    <fragment
+        android:id="@+id/scholarFragment"
+        android:name="com.engelsizyasam.ui.ScholarFragment"
+        android:label="fragment_scholar"
+        tools:layout="@layout/fragment_scholar" >
+        <action
+            android:id="@+id/action_scholarFragment_to_scholarDetailFragment"
+            app:destination="@id/scholarDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/scholarDetailFragment"
+        android:name="com.engelsizyasam.ui.ScholarDetailFragment"
+        android:label="fragment_scholar_detail"
+        tools:layout="@layout/fragment_scholar_detail" >
+        <argument
+            android:name="link"
+            app:argType="string" />
+    </fragment>
 
 </navigation>
 
