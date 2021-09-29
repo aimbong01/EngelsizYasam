@@ -1,5 +1,7 @@
 package com.engelsizyasam.ui
 
+import android.media.AudioAttributes
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +14,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.engelsizyasam.R
 import com.engelsizyasam.adapter.BookAdapter
-import com.engelsizyasam.adapter.BookListener
+import com.engelsizyasam.adapter.BookPdfClickListener
+import com.engelsizyasam.adapter.BookVoiceClickListener
 import com.engelsizyasam.database.BookDatabase
 import com.engelsizyasam.model.BookModel
 import com.engelsizyasam.databinding.FragmentBookBinding
@@ -21,7 +24,6 @@ import com.engelsizyasam.viewmodel.BookViewModelFactory
 import kotlinx.coroutines.launch
 
 class BookFragment : Fragment() {
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,9 +38,10 @@ class BookFragment : Fragment() {
         val bookViewModel = ViewModelProvider(this, viewModelFactory).get(BookViewModel::class.java)
         binding.viewModel = bookViewModel
 
-        val adapter = BookAdapter(application, BookListener { bookId ->
-            bookViewModel.onBookClicked(bookId)
-        })
+        val adapter = BookAdapter(application,
+            BookPdfClickListener { bookId -> bookViewModel.onBookClicked(bookId) },
+            BookVoiceClickListener { bookId -> bookViewModel.onBookVoiceClicked(bookId) }
+        )
 
         binding.recyclerView.adapter = adapter
 
@@ -59,10 +62,17 @@ class BookFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
-        bookViewModel.navigateToBookDetail.observe(viewLifecycleOwner, { night ->
-            night?.let {
-                this.findNavController().navigate(BookFragmentDirections.actionBookFragmentToBookDetailFragment(night))
+        bookViewModel.navigateToBookDetail.observe(viewLifecycleOwner, {
+            it?.let {
+                this.findNavController().navigate(BookFragmentDirections.actionBookFragmentToBookDetailFragment(it))
                 bookViewModel.onBookDetailNavigated()
+            }
+        })
+
+        bookViewModel.navigateToBookVoiceDetail.observe(viewLifecycleOwner, {
+            it?.let {
+                this.findNavController().navigate(BookFragmentDirections.actionBookFragmentToBookVoiceDetailFragment(it))
+                bookViewModel.onBookVoiceDetailNavigated()
             }
         })
 
@@ -74,7 +84,9 @@ class BookFragment : Fragment() {
                         bookName = "Kürk Mantolu Madonna",
                         bookAuthor = "Sabahattin Ali",
                         bookImage = "madonna",
-                        bookPDF = "madonna.pdf"
+                        bookPDF = "madonna.pdf",
+                        bookVoiceUrl = "https://ia802800.us.archive.org/2/items/fyodordostoyevski-sucvecezatekparca/Fyodor%20Dostoyevski%20%E2%80%93%20Suc%CC%A7%20ve%20Ceza%20.webm",
+                        bookPageSize = "164"
                     )
                 )
                 bookViewModel.insert(
@@ -82,7 +94,10 @@ class BookFragment : Fragment() {
                         bookName = "İçimizdeki Çocuk",
                         bookAuthor = "Doğan Cüceloğlu",
                         bookImage = "icimizdekicocuk",
-                        bookPDF = "icimizdekicocuk.pdf"
+                        bookPDF = "icimizdekicocuk.pdf",
+                        bookVoiceUrl = "https://ia803402.us.archive.org/16/items/dogan-cuceloglu-icimizdeki-cocuk/Dog%CC%86an%20Cu%CC%88celog%CC%86lu%20-%20I%CC%87c%CC%A7imizdeki%20C%CC%A7ocuk.mp4",
+                        bookPageSize = "259"
+
                     )
                 )
                 bookViewModel.insert(
@@ -90,7 +105,8 @@ class BookFragment : Fragment() {
                         bookName = "Şeker Portakalı",
                         bookAuthor = "José Mauro de Vasconcelos",
                         bookImage = "sekerportakali",
-                        bookPDF = "sekerportakali.pdf"
+                        bookPDF = "sekerportakali.pdf",
+                        bookPageSize = "365"
                     )
                 )
                 bookViewModel.insert(
@@ -98,10 +114,19 @@ class BookFragment : Fragment() {
                         bookName = "Suç ve Ceza",
                         bookAuthor = "Fyodor Mihailoviç Dostoyevski",
                         bookImage = "sucveceza",
-                        bookPDF = "sucveceza.pdf"
+                        bookPDF = "sucveceza.pdf",
+                        bookPageSize = "1300"
                     )
                 )
-                bookViewModel.insert(BookModel(bookName = "Simyacı", bookAuthor = "Paulo Coelho", bookImage = "simyaci", bookPDF = "simyaci.pdf"))
+                bookViewModel.insert(
+                    BookModel(
+                        bookName = "Simyacı",
+                        bookAuthor = "Paulo Coelho",
+                        bookImage = "simyaci",
+                        bookPDF = "simyaci.pdf",
+                        bookPageSize = "295"
+                    )
+                )
 
             } catch (e: Exception) {
 

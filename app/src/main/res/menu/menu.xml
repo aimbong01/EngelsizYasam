@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/bookFragment"
-        android:icon="@drawable/menu_book"
-        android:title="@string/kitap" />
-    <item
         android:id="@+id/mainFragment"
         android:icon="@drawable/menu_home"
         android:title="@string/home" />
     <item
+        android:id="@+id/bookFragment"
+        android:icon="@drawable/menu_book"
+        android:title="@string/kitap" />
+    <item
         android:id="@+id/seriesFragment"
-        android:icon="@drawable/menu_content"
+        android:icon="@drawable/menu_series"
         android:title="@string/dizi" />
 
     <item
         android:id="@+id/scholarFragment"
-        android:icon="@drawable/menu_content"
+        android:icon="@drawable/menu_scholar"
         android:title="@string/makale" />
 
 

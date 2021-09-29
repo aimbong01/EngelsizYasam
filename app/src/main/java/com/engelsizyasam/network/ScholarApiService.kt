@@ -8,7 +8,6 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-
 private const val BASE_URL = "https://serpapi.com/"
 private const val api = ""
 

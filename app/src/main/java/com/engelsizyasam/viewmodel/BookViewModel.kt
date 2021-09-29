@@ -12,12 +12,24 @@ class BookViewModel(dataSource: BookDatabaseDao) : ViewModel() {
     val navigateToBookDetail
         get() = _navigateToBookDetail
 
+    private val _navigateToBookVoiceDetail = MutableLiveData<Int?>()
+    val navigateToBookVoiceDetail
+        get() = _navigateToBookVoiceDetail
+
     fun onBookClicked(id: Int) {
         _navigateToBookDetail.value = id
     }
 
     fun onBookDetailNavigated() {
         _navigateToBookDetail.value = null
+    }
+
+    fun onBookVoiceClicked(id: Int) {
+        _navigateToBookVoiceDetail.value = id
+    }
+
+    fun onBookVoiceDetailNavigated() {
+        _navigateToBookVoiceDetail.value = null
     }
 
     val database = dataSource

@@ -39,14 +39,10 @@ class BookDetailFragment : Fragment(), OnPageChangeListener {
         val application = requireNotNull(this.activity).application
         val arguments: BookDetailFragmentArgs by navArgs()
         val dataSource = BookDatabase.getInstance(application).bookDatabaseDao
-
         val viewModelFactory = BookDetailViewModelFactory(arguments.bookId, dataSource)
-
         viewModel = ViewModelProvider(this, viewModelFactory).get(BookDetailViewModel::class.java)
         binding.viewModel = viewModel
-
         binding.lifecycleOwner = this
-
 
 
         viewModel.getBook().observe(viewLifecycleOwner, {

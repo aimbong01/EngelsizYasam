@@ -22,6 +22,13 @@ data class BookModel(
     @ColumnInfo(name = "book_pdf")
     var bookPDF: String = "",
 
+    @ColumnInfo(name = "book_voice_url")
+    var bookVoiceUrl: String = "",
+
     @ColumnInfo(name = "book_page")
-    var bookPage: Int = 0
+    var bookPage: Int = 0,
+
+    @ColumnInfo(name = "book_page_size")
+    var bookPageSize: String = ""
+
 )

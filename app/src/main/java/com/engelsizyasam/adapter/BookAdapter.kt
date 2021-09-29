@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.engelsizyasam.model.BookModel
 import com.engelsizyasam.databinding.CardItemBookBinding
 
-class BookAdapter(private val application: Application, private val clickListener: BookListener) :
+class BookAdapter(private val application: Application, private val bookPdfClickListener: BookPdfClickListener,private val voiceClickListener: BookVoiceClickListener) :
     RecyclerView.Adapter<BookAdapter.ViewHolder>() {
 
     var countryList = listOf<BookModel>()
@@ -63,18 +63,20 @@ class BookAdapter(private val application: Application, private val clickListene
             else -> countryFilterList[position]
         }
 
-        holder.bind(item, application, clickListener)
+        holder.bind(item, application, bookPdfClickListener,voiceClickListener)
     }
 
     class ViewHolder private constructor(val binding: CardItemBookBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: BookModel, context: Context, clickListener: BookListener) {
+        fun bind(item: BookModel, context: Context, bookPdfClickListener: BookPdfClickListener, bookVoiceClickListener: BookVoiceClickListener) {
             binding.bookModel = item
             val id = context.resources.getIdentifier("com.engelsizyasam:drawable/book_${item.bookImage}", null, null)
             binding.kitapAdi.text = item.bookName
             binding.kitapYazari.text = item.bookAuthor
+            binding.kitapSayfasi.text = (item.bookPageSize + " Sayfa")
             binding.kitapResmi.setImageResource(id)
-            binding.clickListener = clickListener
+            binding.bookPdfClickListener = bookPdfClickListener
+            binding.bookVoiceClickListener = bookVoiceClickListener
 
         }
 
@@ -98,6 +100,10 @@ class BookAdapter(private val application: Application, private val clickListene
 
 }
 
-class BookListener(val clickListener: (bookId: Int) -> Unit) {
+class BookPdfClickListener(val clickListener: (bookId: Int) -> Unit) {
+    fun onClick(bookModel: BookModel) = clickListener(bookModel.bookId)
+}
+
+class BookVoiceClickListener(val clickListener: (bookId: Int) -> Unit) {
     fun onClick(bookModel: BookModel) = clickListener(bookModel.bookId)
 }

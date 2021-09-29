@@ -22,6 +22,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_bookFragment_to_bookVoiceDetailFragment"
+            app:destination="@id/bookVoiceDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/bookDetailFragment"
@@ -76,6 +79,15 @@
         <argument
             android:name="link"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookVoiceDetailFragment"
+        android:name="com.engelsizyasam.ui.BookVoiceDetailFragment"
+        android:label="fragment_book_voice_detail"
+        tools:layout="@layout/fragment_book_voice_detail" >
+        <argument
+            android:name="bookId"
+            app:argType="integer" />
     </fragment>
 
 </navigation>
