@@ -85,7 +85,7 @@ class BookFragment : Fragment() {
                         bookAuthor = "Sabahattin Ali",
                         bookImage = "madonna",
                         bookPDF = "madonna.pdf",
-                        bookVoiceUrl = "https://ia802800.us.archive.org/2/items/fyodordostoyevski-sucvecezatekparca/Fyodor%20Dostoyevski%20%E2%80%93%20Suc%CC%A7%20ve%20Ceza%20.webm",
+                        bookVoiceUrl = "https://ia802903.us.archive.org/28/items/sabahattinalikurkmantolumadonna/Sabahattin%20Ali%20-%20Ku%CC%88rk%20Mantolu%20Madonna.webm",
                         bookPageSize = "164"
                     )
                 )
@@ -106,6 +106,7 @@ class BookFragment : Fragment() {
                         bookAuthor = "José Mauro de Vasconcelos",
                         bookImage = "sekerportakali",
                         bookPDF = "sekerportakali.pdf",
+                        bookVoiceUrl = "https://ia802909.us.archive.org/28/items/sonulkucuyukimoldurdumuhsinyazicioglu/S%CC%A7eker%20Portakal%C4%B1%20-%20Jose%20Mauro%20de%20Vasconcelos%20.mp4",
                         bookPageSize = "365"
                     )
                 )
@@ -115,6 +116,7 @@ class BookFragment : Fragment() {
                         bookAuthor = "Fyodor Mihailoviç Dostoyevski",
                         bookImage = "sucveceza",
                         bookPDF = "sucveceza.pdf",
+                        bookVoiceUrl = "https://ia802800.us.archive.org/2/items/fyodordostoyevski-sucvecezatekparca/Fyodor%20Dostoyevski%20%E2%80%93%20Suc%CC%A7%20ve%20Ceza%20.webm",
                         bookPageSize = "1300"
                     )
                 )
@@ -124,6 +126,7 @@ class BookFragment : Fragment() {
                         bookAuthor = "Paulo Coelho",
                         bookImage = "simyaci",
                         bookPDF = "simyaci.pdf",
+                        bookVoiceUrl = "https://ia903106.us.archive.org/1/items/paulocoelhosimyaci_201912/Paulo%20Coelho%20-%20Simyac%C4%B1.mp3",
                         bookPageSize = "295"
                     )
                 )

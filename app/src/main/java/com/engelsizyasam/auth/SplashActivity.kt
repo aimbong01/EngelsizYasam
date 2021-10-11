@@ -9,6 +9,15 @@ import com.engelsizyasam.ui.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import android.net.ConnectivityManager
+
+import android.net.NetworkInfo
+
+import android.R.string.no
+import android.content.Context
+import android.R.string.no
+import android.net.NetworkCapabilities
+import android.widget.Toast
 
 class SplashActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -35,15 +44,27 @@ class SplashActivity : AppCompatActivity() {
             override fun onFinish() {
                 i++
                 binding.splashProgress.progress = 100
-                if (currentUser != null) {
-                    startActivity(main)
-                    finish()
+                if (isInternetOn(baseContext)) {
+
+                    if (currentUser != null) {
+                        startActivity(main)
+                        finish()
+                    } else {
+                        startActivity(login)
+                        finish()
+                    }
                 } else {
-                    startActivity(login)
+                    Toast.makeText(baseContext, "İnternet bağlantınızı kontrol ediniz...", Toast.LENGTH_SHORT).show()
                     finish()
                 }
             }
         }
         timer.start()
+    }
+
+    fun isInternetOn(context: Context): Boolean {
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
+        val activeNetwork = cm?.activeNetworkInfo
+        return activeNetwork != null && activeNetwork.isConnected
     }
 }

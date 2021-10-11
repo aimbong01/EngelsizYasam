@@ -54,6 +54,7 @@ class BookVoiceDetailFragment : Fragment() {
         navBar.visibility = View.INVISIBLE
 
         binding.backButton.setOnClickListener {
+            viewModel.stopButton()
             it.findNavController().popBackStack()
         }
 
@@ -146,6 +147,7 @@ class BookVoiceDetailFragment : Fragment() {
     }
 
     override fun onPause() {
+        viewModel.stopButton()
         val navBar: BottomNavigationView = requireActivity().findViewById(R.id.bottomBar)
         navBar.visibility = View.VISIBLE
         super.onPause()
