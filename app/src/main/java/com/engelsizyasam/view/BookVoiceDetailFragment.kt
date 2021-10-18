@@ -1,7 +1,5 @@
-package com.engelsizyasam.ui
+package com.engelsizyasam.view
 
-import android.media.AudioAttributes
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import androidx.fragment.app.Fragment
@@ -11,26 +9,18 @@ import android.view.ViewGroup
 import android.widget.SeekBar
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.engelsizyasam.R
 import com.engelsizyasam.database.BookDatabase
-import com.engelsizyasam.databinding.FragmentBookDetailBinding
 import com.engelsizyasam.databinding.FragmentBookVoiceDetailBinding
-import com.engelsizyasam.viewmodel.BookDetailViewModel
-import com.engelsizyasam.viewmodel.BookDetailViewModelFactory
-import com.engelsizyasam.viewmodel.BookVoiceDetailViewModel
-import com.engelsizyasam.viewmodel.BookVoiceDetailViewModelFactory
-import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 import android.view.animation.LinearInterpolator
 
 import android.view.animation.Animation
 
 import android.view.animation.RotateAnimation
+import androidx.navigation.findNavController
 
 class BookVoiceDetailFragment : Fragment() {
     lateinit var viewModel: BookVoiceDetailViewModel

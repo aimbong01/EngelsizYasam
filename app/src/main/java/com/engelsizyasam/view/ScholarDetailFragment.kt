@@ -1,10 +1,9 @@
-package com.engelsizyasam.ui
+package com.engelsizyasam.view
 
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.os.Environment
-import android.os.FileUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,8 +17,6 @@ import com.downloader.OnDownloadListener
 import com.downloader.PRDownloader
 import com.engelsizyasam.R
 import com.engelsizyasam.databinding.FragmentScholarDetailBinding
-import com.engelsizyasam.viewmodel.ScholarDetailViewModel
-import com.engelsizyasam.viewmodel.ScholarDetailViewModelFactory
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle
 import java.io.File
 
@@ -49,7 +46,7 @@ class ScholarDetailFragment : Fragment() {
 
         binding.progressBar.visibility = View.VISIBLE
         val fileName = "myFile.pdf"
-        downloadPdfFromInternet(viewModel.mLink, getRootDirPath(application), fileName)
+        downloadPdfFromInternet(viewModel.link, getRootDirPath(application), fileName)
 
         return binding.root
     }

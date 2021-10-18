@@ -8,11 +8,11 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.engelsizyasam.ui.MainFragment"
+        android:name="com.engelsizyasam.view.MainFragment"
         android:label="Anasayfa" />
     <fragment
         android:id="@+id/bookFragment"
-        android:name="com.engelsizyasam.ui.BookFragment"
+        android:name="com.engelsizyasam.view.BookFragment"
         android:label="Kitaplar"
         tools:layout="@layout/fragment_book">
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/bookDetailFragment"
-        android:name="com.engelsizyasam.ui.BookDetailFragment"
+        android:name="com.engelsizyasam.view.BookDetailFragment"
         android:label="Kitap">
         <argument
             android:name="bookId"
@@ -36,7 +36,7 @@
     </fragment>
     <fragment
         android:id="@+id/seriesDetailFragment"
-        android:name="com.engelsizyasam.ui.SeriesDetailFragment"
+        android:name="com.engelsizyasam.view.SeriesDetailFragment"
         android:label="Günlük Eğitici İçerik"
         tools:layout="@layout/fragment_series_detail">
         <argument
@@ -45,13 +45,10 @@
         <argument
             android:name="seriesName"
             app:argType="string" />
-        <argument
-            android:name="seriesPage"
-            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/seriesFragment"
-        android:name="com.engelsizyasam.ui.SeriesFragment"
+        android:name="com.engelsizyasam.view.SeriesFragment"
         android:label="fragment_series"
         tools:layout="@layout/fragment_series">
         <action
@@ -64,7 +61,7 @@
     </fragment>
     <fragment
         android:id="@+id/scholarFragment"
-        android:name="com.engelsizyasam.ui.ScholarFragment"
+        android:name="com.engelsizyasam.view.ScholarFragment"
         android:label="fragment_scholar"
         tools:layout="@layout/fragment_scholar" >
         <action
@@ -73,7 +70,7 @@
     </fragment>
     <fragment
         android:id="@+id/scholarDetailFragment"
-        android:name="com.engelsizyasam.ui.ScholarDetailFragment"
+        android:name="com.engelsizyasam.view.ScholarDetailFragment"
         android:label="fragment_scholar_detail"
         tools:layout="@layout/fragment_scholar_detail" >
         <argument
@@ -82,7 +79,7 @@
     </fragment>
     <fragment
         android:id="@+id/bookVoiceDetailFragment"
-        android:name="com.engelsizyasam.ui.BookVoiceDetailFragment"
+        android:name="com.engelsizyasam.view.BookVoiceDetailFragment"
         android:label="fragment_book_voice_detail"
         tools:layout="@layout/fragment_book_voice_detail" >
         <argument

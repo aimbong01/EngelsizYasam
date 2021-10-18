@@ -41,7 +41,8 @@ data class ScholarModel(
     data class SearchParameters(
         val engine: String = "",
         val q: String = "",
-        val hl: String = ""
+        val hl: String = "",
+        val start: Int = 0
     )
 
     @JsonClass(generateAdapter = true)

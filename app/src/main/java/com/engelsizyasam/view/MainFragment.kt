@@ -1,4 +1,4 @@
-package com.engelsizyasam.ui
+package com.engelsizyasam.view
 
 import android.app.Activity
 import android.content.Intent

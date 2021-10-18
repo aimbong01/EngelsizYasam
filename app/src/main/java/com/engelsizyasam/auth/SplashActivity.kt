@@ -5,18 +5,13 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.appcompat.app.AppCompatActivity
 import com.engelsizyasam.databinding.ActivitySplashBinding
-import com.engelsizyasam.ui.MainActivity
+import com.engelsizyasam.view.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import android.net.ConnectivityManager
 
-import android.net.NetworkInfo
-
-import android.R.string.no
 import android.content.Context
-import android.R.string.no
-import android.net.NetworkCapabilities
 import android.widget.Toast
 
 class SplashActivity : AppCompatActivity() {

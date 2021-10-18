@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.SeriesDetailFragment">
+    tools:context=".view.SeriesDetailFragment">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.engelsizyasam.viewmodel.SeriesDetailViewModel" />
+            type="com.engelsizyasam.view.SeriesDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

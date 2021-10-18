@@ -1,22 +1,17 @@
-package com.engelsizyasam.ui
+package com.engelsizyasam.view
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.engelsizyasam.R
 import com.engelsizyasam.adapter.ScholarAdapter
 import com.engelsizyasam.adapter.ScholarListener
-import com.engelsizyasam.adapter.SeriesDetailAdapter
-import com.engelsizyasam.adapter.SeriesDetailListener
 import com.engelsizyasam.databinding.FragmentScholarBinding
-import com.engelsizyasam.viewmodel.ScholarViewModel
 
 class ScholarFragment : Fragment() {
 

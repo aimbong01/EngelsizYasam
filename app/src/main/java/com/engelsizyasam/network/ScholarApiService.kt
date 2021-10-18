@@ -25,8 +25,8 @@ interface ScholarApiService {
     @GET("search.json")
     suspend fun getProperties(
         @Query("start") start: String,
-        @Query("engine") engine: String,
-        @Query("q") q: String,
+        @Query("engine") engine: String = "google_scholar",
+        @Query("q") q: String = "engelli+bireyler",
         @Query("api_key") api_key: String = api
     ): ScholarModel
 }

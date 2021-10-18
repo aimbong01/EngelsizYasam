@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.BookFragment">
+    tools:context=".view.BookFragment">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.engelsizyasam.viewmodel.BookViewModel" />
+            type="com.engelsizyasam.view.BookViewModel" />
     </data>
 
     <LinearLayout

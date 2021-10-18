@@ -1,27 +1,34 @@
 package com.engelsizyasam.adapter
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.engelsizyasam.databinding.CardItemSeriesBinding
 import com.engelsizyasam.model.SeriesModel
+import com.squareup.picasso.Picasso
 
 class SeriesAdapter(private val application: Application, private val clickListener: SeriesListener) : RecyclerView.Adapter<SeriesAdapter.ViewHolder>() {
 
-    var data = arrayListOf<SeriesModel>()
+    var data: List<SeriesModel.İtem> = listOf()
+        @SuppressLint("NotifyDataSetChanged")
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
         holder.bind(item, application, clickListener)
+
     }
 
     class ViewHolder private constructor(val binding: CardItemSeriesBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: SeriesModel, application: Application, clickListener: SeriesListener) {
+        fun bind(item: SeriesModel.İtem, application: Application, clickListener: SeriesListener) {
             binding.seriesModel = item
-            val id = application.resources.getIdentifier("com.engelsizyasam:drawable/series_${item.seriesImage}", null, null)
-            binding.image.setImageResource(id)
+            Picasso.get().load(item.snippet.thumbnails.medium.url).into(binding.image)
             binding.clickListener = clickListener
 
         }
@@ -43,6 +50,6 @@ class SeriesAdapter(private val application: Application, private val clickListe
 
 }
 
-class SeriesListener(val clickListener: (link: String, link2: String, link3: Int) -> Unit) {
-    fun onClick(seriesModel: SeriesModel) = clickListener(seriesModel.seriesId, seriesModel.seriesName, seriesModel.seriesPage)
+class SeriesListener(val clickListener: (link: String, link2: String) -> Unit) {
+    fun onClick(seriesModel: SeriesModel.İtem) = clickListener(seriesModel.id, seriesModel.snippet.title)
 }

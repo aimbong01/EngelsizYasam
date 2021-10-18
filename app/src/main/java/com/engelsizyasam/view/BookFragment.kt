@@ -1,7 +1,5 @@
-package com.engelsizyasam.ui
+package com.engelsizyasam.view
 
-import android.media.AudioAttributes
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,8 +17,6 @@ import com.engelsizyasam.adapter.BookVoiceClickListener
 import com.engelsizyasam.database.BookDatabase
 import com.engelsizyasam.model.BookModel
 import com.engelsizyasam.databinding.FragmentBookBinding
-import com.engelsizyasam.viewmodel.BookViewModel
-import com.engelsizyasam.viewmodel.BookViewModelFactory
 import kotlinx.coroutines.launch
 
 class BookFragment : Fragment() {

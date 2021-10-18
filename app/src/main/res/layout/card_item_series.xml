@@ -6,7 +6,7 @@
     <data>
         <variable
             name="seriesModel"
-            type="com.engelsizyasam.model.SeriesModel" />
+            type="com.engelsizyasam.model.SeriesModel.İtem" />
         <variable
 
             name="clickListener"

@@ -1,6 +1,6 @@
 package com.engelsizyasam.network
 
-import com.engelsizyasam.model.SeriesModel
+import com.engelsizyasam.model.SeriesDetailModel
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -20,18 +20,19 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
-interface SeriesApiService {
+interface SeriesDetailApiService {
 
-    @GET("playlists")
+    @GET("playlistItems")
     suspend fun getProperties(
+        @Query("pageToken") pageToken: String?,
+        @Query("maxResults") maxResults: String = "50",
         @Query("part") part: String = "snippet",
-        @Query("pageToken") pageToken: String,
-        @Query("channelId") channelId: String = "UCgfrxC70niIPNBOqQO2g-IQ",
+        @Query("playlistId") playlistId: String,
         @Query("key") key: String = api
 
-    ): SeriesModel
+    ): SeriesDetailModel
 }
 
-object SeriesApi {
-    val retrofitService: SeriesApiService = retrofit.create(SeriesApiService::class.java)
+object SeriesDetailApi {
+    val retrofitService: SeriesDetailApiService = retrofit.create(SeriesDetailApiService::class.java)
 }

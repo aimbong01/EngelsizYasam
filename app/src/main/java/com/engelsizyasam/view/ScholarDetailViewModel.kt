@@ -1,12 +1,11 @@
-package com.engelsizyasam.viewmodel
+package com.engelsizyasam.view
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
-class ScholarDetailViewModel(private val application: Application, link: String) : ViewModel() {
+class ScholarDetailViewModel(private val application: Application, val link: String) : ViewModel() {
 
-    val mLink = link
 }
 
 class ScholarDetailViewModelFactory(private val application: Application, private val link: String) : ViewModelProvider.Factory {

@@ -1,4 +1,4 @@
-package com.engelsizyasam.viewmodel
+package com.engelsizyasam.view
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -17,8 +17,6 @@ class ScholarViewModel : ViewModel() {
     val openLink
         get() = _openLink
 
-    var i:Int = 0
-
     fun onLinkClicked(id: String) {
         _openLink.value = id
     }
@@ -31,7 +29,7 @@ class ScholarViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 for (i in 0..100 step 10) {
-                    _properties.value = ScholarApi.retrofitService.getProperties(i.toString(), "google_scholar", "engelli+bireyler").organicResults
+                    _properties.value = ScholarApi.retrofitService.getProperties(start = i.toString()).organicResults
                 }
             } catch (e: Exception) {
                 //Toast.makeText(application, "İnternet Bağlantınızı Kontrol Edin", Toast.LENGTH_SHORT).show()

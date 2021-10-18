@@ -1,4 +1,4 @@
-package com.engelsizyasam.ui
+package com.engelsizyasam.view
 
 import android.content.Intent
 import android.net.Uri
@@ -15,8 +15,6 @@ import com.engelsizyasam.R
 import com.engelsizyasam.adapter.SeriesDetailAdapter
 import com.engelsizyasam.adapter.SeriesDetailListener
 import com.engelsizyasam.databinding.FragmentSeriesDetailBinding
-import com.engelsizyasam.viewmodel.SeriesDetailViewModel
-import com.engelsizyasam.viewmodel.SeriesDetailViewModelFactory
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class SeriesDetailFragment : Fragment() {
@@ -29,7 +27,7 @@ class SeriesDetailFragment : Fragment() {
         val binding: FragmentSeriesDetailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_series_detail, container, false)
         val application = requireNotNull(this.activity).application
         val args = SeriesDetailFragmentArgs.fromBundle(requireArguments())
-        val viewModelFactory = SeriesDetailViewModelFactory(application, args.playlistId)
+        val viewModelFactory = SeriesDetailViewModelFactory(application, args.playlistId, args.seriesName)
 
         val viewModel = ViewModelProvider(this, viewModelFactory).get(SeriesDetailViewModel::class.java)
 
@@ -39,6 +37,10 @@ class SeriesDetailFragment : Fragment() {
 
         val navBar: BottomNavigationView = requireActivity().findViewById(R.id.bottomBar)
         navBar.visibility = View.INVISIBLE
+
+        Log.e("id", args.playlistId)
+        Log.e("name", args.seriesName)
+
 
         binding.backButton.setOnClickListener {
             it.findNavController().popBackStack()
@@ -58,9 +60,6 @@ class SeriesDetailFragment : Fragment() {
 
         binding.recyclerView.adapter = adapter
 
-        viewModel.seriesName = args.seriesName
-        viewModel.seriesPage = args.seriesPage
-
         viewModel.run()
         viewModel.properties.observe(viewLifecycleOwner, {
             adapter.data += it
@@ -76,5 +75,6 @@ class SeriesDetailFragment : Fragment() {
         navBar.visibility = View.VISIBLE
         super.onPause()
     }
+
 
 }

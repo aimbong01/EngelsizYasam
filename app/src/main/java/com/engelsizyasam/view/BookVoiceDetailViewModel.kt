@@ -1,4 +1,4 @@
-package com.engelsizyasam.viewmodel
+package com.engelsizyasam.view
 
 import android.media.AudioAttributes
 import android.media.MediaPlayer
