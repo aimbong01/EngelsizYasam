@@ -18,8 +18,9 @@ import com.downloader.PRDownloader
 import com.engelsizyasam.R
 import com.engelsizyasam.databinding.FragmentScholarDetailBinding
 import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
-
+@AndroidEntryPoint
 class ScholarDetailFragment : Fragment() {
 
     private lateinit var application: Application

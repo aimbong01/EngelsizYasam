@@ -18,5 +18,10 @@
         android:icon="@drawable/menu_scholar"
         android:title="@string/makale" />
 
+    <item
+        android:id="@+id/newsFragment"
+        android:icon="@drawable/menu_news"
+        android:title="Haberler" />
+
 
 </menu>

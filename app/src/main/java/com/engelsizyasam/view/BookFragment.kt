@@ -17,8 +17,10 @@ import com.engelsizyasam.adapter.BookVoiceClickListener
 import com.engelsizyasam.database.BookDatabase
 import com.engelsizyasam.model.BookModel
 import com.engelsizyasam.databinding.FragmentBookBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class BookFragment : Fragment() {
 
     override fun onCreateView(
@@ -28,10 +30,10 @@ class BookFragment : Fragment() {
         val binding: FragmentBookBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_book, container, false)
 
         val application = requireNotNull(this.activity).application
-        val dataSource = BookDatabase.getInstance(application).bookDatabaseDao
-        val viewModelFactory = BookViewModelFactory(dataSource)
+        //val dataSource = BookDatabase.getInstance(application).bookDatabaseDao
+        //val viewModelFactory = BookViewModelFactory(dataSource)
 
-        val bookViewModel = ViewModelProvider(this, viewModelFactory).get(BookViewModel::class.java)
+        val bookViewModel = ViewModelProvider(this).get(BookViewModel::class.java)
         binding.viewModel = bookViewModel
 
         val adapter = BookAdapter(application,

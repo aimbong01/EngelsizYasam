@@ -3,8 +3,10 @@ package com.engelsizyasam.view
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class ScholarDetailViewModel(private val application: Application, val link: String) : ViewModel() {
+class ScholarDetailViewModel (private val application: Application, val link: String) : ViewModel() {
 
 }
 

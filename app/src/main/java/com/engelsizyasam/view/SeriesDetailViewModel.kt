@@ -1,28 +1,37 @@
 package com.engelsizyasam.view
 
-import android.app.Application
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.*
+import com.engelsizyasam.BaseApplication
 import com.engelsizyasam.model.SeriesDetailModel
-import com.engelsizyasam.network.SeriesDetailApi
-import kotlinx.coroutines.launch
+import com.engelsizyasam.network.SeriesDetailApiService
 
-class SeriesDetailViewModel(private val application: Application, private val playlistId: String, var seriesName: String) : ViewModel() {
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+@HiltViewModel
+class SeriesDetailViewModel @Inject constructor(savedStateHandle: SavedStateHandle, private val application: BaseApplication, private val service: SeriesDetailApiService) : ViewModel() {
 
     private lateinit var base: SeriesDetailModel
     private var total: Int = 0
     private var page: Int = 0
     private var seriesPage: String = ""
 
+    private val _seriesName = savedStateHandle.get<String>("seriesName").toString()
+    val seriesName: String
+        get() = _seriesName
+
+    private var playlistId = savedStateHandle.get<String>("playlistId").toString()
+
     private val _properties = MutableLiveData<List<SeriesDetailModel.İtem>>()
     val properties: LiveData<List<SeriesDetailModel.İtem>>
         get() = _properties
 
-
     fun run() {
         viewModelScope.launch {
-            total = SeriesDetailApi.retrofitService.getProperties(pageToken = seriesPage, playlistId = playlistId).pageInfo.totalResults
+            total = service.getProperties(pageToken = seriesPage, playlistId = playlistId).pageInfo.totalResults
             page = if (total % 50 == 0)
                 total / 50
             else
@@ -31,16 +40,14 @@ class SeriesDetailViewModel(private val application: Application, private val pl
 
             try {
                 for (i in 1..page) {
-                    base = SeriesDetailApi.retrofitService.getProperties(pageToken = seriesPage, playlistId = playlistId)
+                    base = service.getProperties(pageToken = seriesPage, playlistId = playlistId)
                     _properties.value = base.items
                     seriesPage = base.nextPageToken
-                    //Log.e("seriespage", seriesPage)
                 }
 
                 _properties.value = listOf()
 
             } catch (e: Exception) {
-                Log.e("hata", "hata")
                 Toast.makeText(application, "İnternet Bağlantınızı Kontrol Edin", Toast.LENGTH_SHORT).show()
             }
 
@@ -60,12 +67,13 @@ class SeriesDetailViewModel(private val application: Application, private val pl
     }
 }
 
-class SeriesDetailViewModelFactory(private val application: Application, private val playlistId: String, private val seriesName: String) : ViewModelProvider.Factory {
+/*
+class SeriesDetailViewModelFactory(private val playlistId: String, private val seriesName: String) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(SeriesDetailViewModel::class.java)) {
-            return SeriesDetailViewModel(application, playlistId, seriesName) as T
+            return SeriesDetailViewModel(playlistId, seriesName) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
-}
+}*/

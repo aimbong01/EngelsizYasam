@@ -6,9 +6,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.engelsizyasam.model.ScholarModel
 import com.engelsizyasam.network.ScholarApi
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ScholarViewModel : ViewModel() {
+@HiltViewModel
+class ScholarViewModel @Inject constructor(): ViewModel() {
     private val _properties = MutableLiveData<List<ScholarModel.OrganicResult>>()
     val properties: LiveData<List<ScholarModel.OrganicResult>>
         get() = _properties

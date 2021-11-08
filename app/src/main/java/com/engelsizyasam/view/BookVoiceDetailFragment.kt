@@ -21,7 +21,9 @@ import android.view.animation.Animation
 
 import android.view.animation.RotateAnimation
 import androidx.navigation.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BookVoiceDetailFragment : Fragment() {
     lateinit var viewModel: BookVoiceDetailViewModel
     lateinit var binding: FragmentBookVoiceDetailBinding
@@ -33,10 +35,10 @@ class BookVoiceDetailFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_book_voice_detail, container, false)
         val application = requireNotNull(this.activity).application
-        val arguments: BookVoiceDetailFragmentArgs by navArgs()
-        val dataSource = BookDatabase.getInstance(application).bookDatabaseDao
-        val viewModelFactory = BookVoiceDetailViewModelFactory(arguments.bookId, dataSource)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(BookVoiceDetailViewModel::class.java)
+        //val arguments: BookVoiceDetailFragmentArgs by navArgs()
+        //val dataSource = BookDatabase.getInstance(application).bookDatabaseDao
+        //val viewModelFactory = BookVoiceDetailViewModelFactory(arguments.bookId, dataSource)
+        viewModel = ViewModelProvider(this).get(BookVoiceDetailViewModel::class.java)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 

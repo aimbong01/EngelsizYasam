@@ -17,12 +17,19 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
+import com.engelsizyasam.BaseApplication
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class BookDetailFragment : Fragment(), OnPageChangeListener {
 
     var pageNumber = 0
     var bookId = 0
+
+    @Inject
+    lateinit var application: BaseApplication
 
     lateinit var viewModel: BookDetailViewModel
     override fun onCreateView(
@@ -31,11 +38,12 @@ class BookDetailFragment : Fragment(), OnPageChangeListener {
     ): View {
 
         val binding: FragmentBookDetailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_book_detail, container, false)
-        val application = requireNotNull(this.activity).application
-        val arguments: BookDetailFragmentArgs by navArgs()
-        val dataSource = BookDatabase.getInstance(application).bookDatabaseDao
-        val viewModelFactory = BookDetailViewModelFactory(arguments.bookId, dataSource)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(BookDetailViewModel::class.java)
+
+        //val application = requireNotNull(this.activity).application
+        //val arguments: BookDetailFragmentArgs by navArgs()
+        //val dataSource = BookDatabase.getInstance(application).bookDatabaseDao
+        //val viewModelFactory = BookDetailViewModelFactory(arguments.bookId, dataSource)
+        viewModel = ViewModelProvider(this).get(BookDetailViewModel::class.java)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 

@@ -1,14 +1,17 @@
 package com.engelsizyasam.view
 
-import android.app.Application
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.*
+import com.engelsizyasam.BaseApplication
 import com.engelsizyasam.model.SeriesModel
-import com.engelsizyasam.network.SeriesApi
+import com.engelsizyasam.network.SeriesApiService
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SeriesViewModel(private val application: Application) : ViewModel() {
+@HiltViewModel
+class SeriesViewModel @Inject constructor(private val application: BaseApplication, private val service: SeriesApiService) : ViewModel() {
 
     private lateinit var base: SeriesModel
     private var total: Int = 0
@@ -22,7 +25,7 @@ class SeriesViewModel(private val application: Application) : ViewModel() {
 
     fun run() {
         viewModelScope.launch {
-            total = SeriesApi.retrofitService.getProperties(pageToken = seriesPage).pageInfo.totalResults
+            total = service.getProperties(pageToken = seriesPage).pageInfo.totalResults
             page = if (total % 5 == 0)
                 total / 5
             else
@@ -31,7 +34,7 @@ class SeriesViewModel(private val application: Application) : ViewModel() {
 
             try {
                 for (i in 1..page) {
-                    base = SeriesApi.retrofitService.getProperties(pageToken = seriesPage)
+                    base = service.getProperties(pageToken = seriesPage)
                     _properties.value = base.items
                     seriesPage = base.nextPageToken
                     //Log.e("seriespage", seriesPage)
@@ -61,12 +64,3 @@ class SeriesViewModel(private val application: Application) : ViewModel() {
 
 }
 
-class SeriesViewModelFactory(private val application: Application) : ViewModelProvider.Factory {
-    @Suppress("unchecked_cast")
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(SeriesViewModel::class.java)) {
-            return SeriesViewModel(application) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-}

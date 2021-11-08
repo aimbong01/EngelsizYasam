@@ -86,6 +86,11 @@
             android:name="bookId"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.engelsizyasam.view.NewsFragment"
+        android:label="fragment_news"
+        tools:layout="@layout/fragment_news" />
 
 </navigation>
 

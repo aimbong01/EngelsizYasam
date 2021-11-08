@@ -12,7 +12,9 @@ import com.engelsizyasam.R
 import com.engelsizyasam.adapter.ScholarAdapter
 import com.engelsizyasam.adapter.ScholarListener
 import com.engelsizyasam.databinding.FragmentScholarBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ScholarFragment : Fragment() {
 
     private lateinit var viewModel: ScholarViewModel

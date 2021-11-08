@@ -16,7 +16,9 @@ import com.engelsizyasam.adapter.SeriesDetailAdapter
 import com.engelsizyasam.adapter.SeriesDetailListener
 import com.engelsizyasam.databinding.FragmentSeriesDetailBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SeriesDetailFragment : Fragment() {
 
     override fun onCreateView(
@@ -25,11 +27,10 @@ class SeriesDetailFragment : Fragment() {
     ): View {
 
         val binding: FragmentSeriesDetailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_series_detail, container, false)
-        val application = requireNotNull(this.activity).application
-        val args = SeriesDetailFragmentArgs.fromBundle(requireArguments())
-        val viewModelFactory = SeriesDetailViewModelFactory(application, args.playlistId, args.seriesName)
+        //val args = SeriesDetailFragmentArgs.fromBundle(requireArguments())
+        //val viewModelFactory = SeriesDetailViewModelFactory(args.playlistId, args.seriesName)
 
-        val viewModel = ViewModelProvider(this, viewModelFactory).get(SeriesDetailViewModel::class.java)
+        val viewModel = ViewModelProvider(this).get(SeriesDetailViewModel::class.java)
 
         binding.lifecycleOwner = this
 
@@ -37,10 +38,6 @@ class SeriesDetailFragment : Fragment() {
 
         val navBar: BottomNavigationView = requireActivity().findViewById(R.id.bottomBar)
         navBar.visibility = View.INVISIBLE
-
-        Log.e("id", args.playlistId)
-        Log.e("name", args.seriesName)
-
 
         binding.backButton.setOnClickListener {
             it.findNavController().popBackStack()

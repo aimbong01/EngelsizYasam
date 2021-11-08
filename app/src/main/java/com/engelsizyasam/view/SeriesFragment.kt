@@ -9,17 +9,20 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.engelsizyasam.BaseApplication
 import com.engelsizyasam.R
 import com.engelsizyasam.adapter.SeriesAdapter
 import com.engelsizyasam.adapter.SeriesListener
 import com.engelsizyasam.databinding.FragmentSeriesBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class SeriesFragment : Fragment() {
     private lateinit var binding: FragmentSeriesBinding
-    private lateinit var application: Application
-    private lateinit var viewModelFactory: SeriesViewModelFactory
     private lateinit var viewModel: SeriesViewModel
     private lateinit var adapter: SeriesAdapter
+    @Inject lateinit var application: BaseApplication
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,9 +30,7 @@ class SeriesFragment : Fragment() {
     ): View {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_series, container, false)
-        application = requireNotNull(this.activity).application
-        viewModelFactory = SeriesViewModelFactory(application)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(SeriesViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(SeriesViewModel::class.java)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 

@@ -2,18 +2,22 @@ package com.engelsizyasam.view
 
 import android.media.AudioAttributes
 import android.media.MediaPlayer
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import com.engelsizyasam.database.BookDatabaseDao
 import com.engelsizyasam.model.BookModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class BookVoiceDetailViewModel(bookId: Int, dataSource: BookDatabaseDao) : ViewModel() {
+@HiltViewModel
+class BookVoiceDetailViewModel @Inject constructor(savedStateHandle: SavedStateHandle, database: BookDatabaseDao) : ViewModel() {
+
+
     var mediaPlayer: MediaPlayer? = null
 
-    val database = dataSource
-    private val book: LiveData<BookModel> = database.getBookWithId(bookId)
+    private val bookId = savedStateHandle.get<Int>("bookId")
+
+
+    private val book: LiveData<BookModel> = database.getBookWithId(bookId!!)
     fun getBook() = book
 
     fun initialize(url: String) {
@@ -73,6 +77,7 @@ class BookVoiceDetailViewModel(bookId: Int, dataSource: BookDatabaseDao) : ViewM
     }
 }
 
+/*
 class BookVoiceDetailViewModelFactory(private val bookId: Int, private val dataSource: BookDatabaseDao) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
@@ -81,4 +86,4 @@ class BookVoiceDetailViewModelFactory(private val bookId: Int, private val dataS
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
-}
+}*/

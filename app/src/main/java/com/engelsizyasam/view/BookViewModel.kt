@@ -5,8 +5,25 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.engelsizyasam.database.BookDatabaseDao
 import com.engelsizyasam.model.BookModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class BookViewModel(dataSource: BookDatabaseDao) : ViewModel() {
+@HiltViewModel
+class BookViewModel @Inject constructor(private val dataSource: BookDatabaseDao) : ViewModel() {
+
+    val books = dataSource.getAllBooks()
+
+    suspend fun insert(bookModel: BookModel) {
+        dataSource.insert(bookModel)
+    }
+
+    suspend fun update(bookModel: BookModel) {
+        dataSource.update(bookModel)
+    }
+
+    suspend fun clear() {
+        dataSource.clear()
+    }
 
     private val _navigateToBookDetail = MutableLiveData<Int?>()
     val navigateToBookDetail
@@ -31,29 +48,5 @@ class BookViewModel(dataSource: BookDatabaseDao) : ViewModel() {
     fun onBookVoiceDetailNavigated() {
         _navigateToBookVoiceDetail.value = null
     }
-
-    val database = dataSource
-    val books = database.getAllBooks()
-
-    suspend fun insert(bookModel: BookModel) {
-        database.insert(bookModel)
-    }
-
-    suspend fun update(bookModel: BookModel) {
-        database.update(bookModel)
-    }
-
-    suspend fun clear() {
-        database.clear()
-    }
 }
 
-class BookViewModelFactory(private val dataSource: BookDatabaseDao) : ViewModelProvider.Factory {
-    @Suppress("unchecked_cast")
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(BookViewModel::class.java)) {
-            return BookViewModel(dataSource) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-}
