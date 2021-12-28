@@ -2,7 +2,6 @@ package com.engelsizyasam.view
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.engelsizyasam.database.BookDatabaseDao
 import com.engelsizyasam.model.BookModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -33,20 +32,5 @@ class BookViewModel @Inject constructor(private val dataSource: BookDatabaseDao)
     val navigateToBookVoiceDetail
         get() = _navigateToBookVoiceDetail
 
-    fun onBookClicked(id: Int) {
-        _navigateToBookDetail.value = id
-    }
-
-    fun onBookDetailNavigated() {
-        _navigateToBookDetail.value = null
-    }
-
-    fun onBookVoiceClicked(id: Int) {
-        _navigateToBookVoiceDetail.value = id
-    }
-
-    fun onBookVoiceDetailNavigated() {
-        _navigateToBookVoiceDetail.value = null
-    }
 }
 

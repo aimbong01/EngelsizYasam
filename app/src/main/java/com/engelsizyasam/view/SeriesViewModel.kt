@@ -7,6 +7,7 @@ import com.engelsizyasam.BaseApplication
 import com.engelsizyasam.model.SeriesModel
 import com.engelsizyasam.network.SeriesApiService
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,7 +24,16 @@ class SeriesViewModel @Inject constructor(private val application: BaseApplicati
     val properties: LiveData<List<SeriesModel.İtem>>
         get() = _properties
 
-    fun run() {
+    private val viewModelJob = Job()
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
+
+
+    init {
+        _properties.value = listOf()
         viewModelScope.launch {
             total = service.getProperties(pageToken = seriesPage).pageInfo.totalResults
             page = if (total % 5 == 0)
@@ -35,15 +45,15 @@ class SeriesViewModel @Inject constructor(private val application: BaseApplicati
             try {
                 for (i in 1..page) {
                     base = service.getProperties(pageToken = seriesPage)
-                    _properties.value = base.items
+                    _properties.value = _properties.value?.plus(base.items)
                     seriesPage = base.nextPageToken
                     //Log.e("seriespage", seriesPage)
                 }
 
-                _properties.value = listOf()
+                //_properties.value = listOf()
 
             } catch (e: Exception) {
-                Log.e("hata", "hata")
+                Log.e("hata", e.toString())
                 Toast.makeText(application, "İnternet Bağlantınızı Kontrol Edin", Toast.LENGTH_SHORT).show()
             }
 

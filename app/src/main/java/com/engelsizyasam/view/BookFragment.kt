@@ -9,12 +9,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.engelsizyasam.R
 import com.engelsizyasam.adapter.BookAdapter
-import com.engelsizyasam.adapter.BookPdfClickListener
-import com.engelsizyasam.adapter.BookVoiceClickListener
-import com.engelsizyasam.database.BookDatabase
 import com.engelsizyasam.model.BookModel
 import com.engelsizyasam.databinding.FragmentBookBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,12 +30,8 @@ class BookFragment : Fragment() {
         //val viewModelFactory = BookViewModelFactory(dataSource)
 
         val bookViewModel = ViewModelProvider(this).get(BookViewModel::class.java)
-        binding.viewModel = bookViewModel
 
-        val adapter = BookAdapter(application,
-            BookPdfClickListener { bookId -> bookViewModel.onBookClicked(bookId) },
-            BookVoiceClickListener { bookId -> bookViewModel.onBookVoiceClicked(bookId) }
-        )
+        val adapter = BookAdapter(application)
 
         binding.recyclerView.adapter = adapter
 
@@ -60,19 +52,7 @@ class BookFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
-        bookViewModel.navigateToBookDetail.observe(viewLifecycleOwner, {
-            it?.let {
-                this.findNavController().navigate(BookFragmentDirections.actionBookFragmentToBookDetailFragment(it))
-                bookViewModel.onBookDetailNavigated()
-            }
-        })
 
-        bookViewModel.navigateToBookVoiceDetail.observe(viewLifecycleOwner, {
-            it?.let {
-                this.findNavController().navigate(BookFragmentDirections.actionBookFragmentToBookVoiceDetailFragment(it))
-                bookViewModel.onBookVoiceDetailNavigated()
-            }
-        })
 
 
         viewLifecycleOwner.lifecycleScope.launch {

@@ -29,7 +29,6 @@ class NewsFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
 
         binding.lifecycleOwner = this
-        binding.viewModel = viewModel
 
         adapter = NewsAdapter(container?.context!!)
 

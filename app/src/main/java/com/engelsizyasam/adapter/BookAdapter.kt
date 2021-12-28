@@ -5,11 +5,13 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.engelsizyasam.model.BookModel
 import com.engelsizyasam.databinding.CardItemBookBinding
+import com.engelsizyasam.view.BookFragmentDirections
 
-class BookAdapter(private val application: Application, private val bookPdfClickListener: BookPdfClickListener,private val voiceClickListener: BookVoiceClickListener) :
+class BookAdapter(private val application: Application) :
     RecyclerView.Adapter<BookAdapter.ViewHolder>() {
 
     var countryList = listOf<BookModel>()
@@ -63,20 +65,27 @@ class BookAdapter(private val application: Application, private val bookPdfClick
             else -> countryFilterList[position]
         }
 
-        holder.bind(item, application, bookPdfClickListener,voiceClickListener)
+        holder.bind(item, application)
     }
 
     class ViewHolder private constructor(val binding: CardItemBookBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: BookModel, context: Context, bookPdfClickListener: BookPdfClickListener, bookVoiceClickListener: BookVoiceClickListener) {
-            binding.bookModel = item
+        fun bind(item: BookModel, context: Context) {
             val id = context.resources.getIdentifier("com.engelsizyasam:drawable/book_${item.bookImage}", null, null)
             binding.kitapAdi.text = item.bookName
             binding.kitapYazari.text = item.bookAuthor
             binding.kitapSayfasi.text = (item.bookPageSize + " Sayfa")
             binding.kitapResmi.setImageResource(id)
-            binding.bookPdfClickListener = bookPdfClickListener
-            binding.bookVoiceClickListener = bookVoiceClickListener
+
+            binding.pdfButton.setOnClickListener {
+                it.findNavController().navigate(BookFragmentDirections.actionBookFragmentToBookDetailFragment(item.bookId))
+            }
+            binding.sesliButton.setOnClickListener {
+                it.findNavController().navigate(BookFragmentDirections.actionBookFragmentToBookVoiceDetailFragment(item.bookId))
+            }
+
+            /*binding.bookPdfClickListener = bookPdfClickListener
+            binding.bookVoiceClickListener = bookVoiceClickListener*/
 
         }
 
@@ -99,6 +108,7 @@ class BookAdapter(private val application: Application, private val bookPdfClick
     }
 
 }
+/*
 
 class BookPdfClickListener(val clickListener: (bookId: Int) -> Unit) {
     fun onClick(bookModel: BookModel) = clickListener(bookModel.bookId)
@@ -107,3 +117,4 @@ class BookPdfClickListener(val clickListener: (bookId: Int) -> Unit) {
 class BookVoiceClickListener(val clickListener: (bookId: Int) -> Unit) {
     fun onClick(bookModel: BookModel) = clickListener(bookModel.bookId)
 }
+*/

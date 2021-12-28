@@ -27,7 +27,6 @@ class ScholarFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(ScholarViewModel::class.java)
 
         binding.lifecycleOwner = this
-        binding.viewModel = viewModel
 
         val adapter = ScholarAdapter(ScholarListener {
             viewModel.onLinkClicked(it)

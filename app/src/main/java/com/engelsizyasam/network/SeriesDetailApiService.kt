@@ -8,7 +8,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-private const val api = ""
+private const val api = "AIzaSyCkX2pR0YevcbtLB5s6qcUFBYp3m_lfsLU"
 
 
 interface SeriesDetailApiService {

@@ -55,6 +55,8 @@ class SeriesDetailFragment : Fragment() {
             }
         })
 
+
+
         binding.recyclerView.adapter = adapter
 
         viewModel.run()

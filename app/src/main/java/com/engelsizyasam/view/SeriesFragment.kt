@@ -15,6 +15,7 @@ import com.engelsizyasam.adapter.SeriesAdapter
 import com.engelsizyasam.adapter.SeriesListener
 import com.engelsizyasam.databinding.FragmentSeriesBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Job
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -31,7 +32,6 @@ class SeriesFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_series, container, false)
         viewModel = ViewModelProvider(this).get(SeriesViewModel::class.java)
-        binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
         viewModel.navigateToSeriesDetail.observe(viewLifecycleOwner, {
@@ -50,13 +50,17 @@ class SeriesFragment : Fragment() {
 
         binding.recyclerView.adapter = adapter
 
-        viewModel.run()
+
         viewModel.properties.observe(viewLifecycleOwner, {
-            adapter.data += it
+            adapter.data = it
             //binding.progressBar.visibility = View.GONE
         })
 
 
         return binding.root
+    }
+
+    override fun onPause() {
+        super.onPause()
     }
 }

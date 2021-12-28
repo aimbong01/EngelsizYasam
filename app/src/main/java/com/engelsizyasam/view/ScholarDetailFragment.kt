@@ -41,7 +41,6 @@ class ScholarDetailFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
-        binding.viewModel = viewModel
 
         PRDownloader.initialize(application)
 

@@ -37,7 +37,6 @@ class ScholarViewModel @Inject constructor(): ViewModel() {
             } catch (e: Exception) {
                 //Toast.makeText(application, "İnternet Bağlantınızı Kontrol Edin", Toast.LENGTH_SHORT).show()
             }
-
         }
     }
 }

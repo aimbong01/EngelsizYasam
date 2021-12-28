@@ -3,21 +3,6 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="bookModel"
-            type="com.engelsizyasam.model.BookModel" />
-
-        <variable
-            name="bookPdfClickListener"
-            type="com.engelsizyasam.adapter.BookPdfClickListener" />
-
-        <variable
-            name="bookVoiceClickListener"
-            type="com.engelsizyasam.adapter.BookVoiceClickListener" />
-    </data>
-
     <androidx.cardview.widget.CardView
         android:id="@+id/bookCardItem"
         android:layout_width="match_parent"
@@ -94,7 +79,6 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="100dp"
-                android:onClick="@{() -> bookVoiceClickListener.onClick(bookModel)}"
                 android:layout_marginTop="20dp"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toBottomOf="@+id/kitapSayfasi"
@@ -106,7 +90,6 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="100dp"
-                android:onClick="@{() -> bookPdfClickListener.onClick(bookModel)}"
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintTop_toBottomOf="@+id/kitapSayfasi"
                 card_view:srcCompat="@drawable/book_readpdf" />
