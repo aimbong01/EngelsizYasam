@@ -38,6 +38,7 @@ class RegisterActivity : AppCompatActivity() {
 
         uri = Uri.parse("https:///i.hizliresim.com/rbzlchf.jpg")
         Log.d("aley", uri.toString())
+
         database = FirebaseDatabase.getInstance()
         databaseReference = database.reference.child("profile")
 
@@ -73,7 +74,6 @@ class RegisterActivity : AppCompatActivity() {
             } else {
                 createAccount(firstname.text.toString(), surname.text.toString(), email.text.toString(), password.text.toString())
                 binding.progressBar.visibility = View.VISIBLE
-
             }
         }
 
