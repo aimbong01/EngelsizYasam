@@ -9,7 +9,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 private const val BASE_URL = "https://serpapi.com/"
-private const val api = ""
+private const val api = "b3eda36f567a6039f98b712ed6baed57d3d3a7d627453b82afd3db1be16cde88"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())

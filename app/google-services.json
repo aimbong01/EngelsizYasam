@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "755037761320",
+    "project_id": "engelsiz-yasam",
+    "storage_bucket": "engelsiz-yasam.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:755037761320:android:843976cb08333dedfaaa1d",
+        "android_client_info": {
+          "package_name": "com.engelsizyasam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "755037761320-h7lc1eh7lkeck8qn0r87cpk24ngsehul.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.engelsizyasam",
+            "certificate_hash": "d6adecf6c6fea155ea7871c625de3b7a07a13517"
+          }
+        },
+        {
+          "client_id": "755037761320-f51poc6v5vt12nl0d2u1g09387rsapeu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbZs4A_MYuHW3xEJR4el1Z1wuFUnB5ci8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "755037761320-f51poc6v5vt12nl0d2u1g09387rsapeu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
