@@ -10,6 +10,7 @@ import com.engelsizyasam.BaseApplication
 import com.engelsizyasam.model.NewsModel
 import com.engelsizyasam.network.NewsApiService
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,16 +21,25 @@ class NewsViewModel @Inject constructor(private val application: BaseApplication
     val properties: LiveData<List<NewsModel.Article?>>
         get() = _properties
 
-    fun run() {
-        viewModelScope.launch {
+    private var job = Job() as Job
+
+    init {
+        job = viewModelScope.launch {
             try {
                 _properties.value = service.getProperties().articles!!
 
             } catch (e: Exception) {
-                Toast.makeText(application, "İnternet Bağlantınızı Kontrol Edin", Toast.LENGTH_SHORT).show()
-
+                //Toast.makeText(application, "İnternet Bağlantınızı Kontrol Edin", Toast.LENGTH_SHORT).show()
+                //Log.e("hata", e.toString())
             }
 
         }
+
+    }
+
+    override fun onCleared() {
+        Log.e("cancel", "cancel")
+        job.cancel()
+        super.onCleared()
     }
 }

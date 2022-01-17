@@ -40,7 +40,6 @@ class ScholarFragment : Fragment() {
         })
 
         binding.recyclerView.adapter = adapter
-        viewModel.run()
 
         viewModel.properties.observe(viewLifecycleOwner, {
             adapter.data += it

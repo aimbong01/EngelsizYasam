@@ -23,8 +23,6 @@ import kotlinx.coroutines.launch
 private lateinit var auth: FirebaseAuth
 private lateinit var databaseReference: DatabaseReference
 private lateinit var database: FirebaseDatabase
-private var storage: FirebaseStorage? = null
-private var storageReference: StorageReference? = null
 
 class BookAdapter(private val application: Application) : RecyclerView.Adapter<BookAdapter.ViewHolder>() {
 

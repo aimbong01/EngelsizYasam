@@ -28,11 +28,12 @@ class ScholarViewModel @Inject constructor(): ViewModel() {
         _openLink.value = null
     }
 
-    fun run() {
+    init {
+        _properties.value = listOf()
         viewModelScope.launch {
             try {
                 for (i in 0..100 step 10) {
-                    _properties.value = ScholarApi.retrofitService.getProperties(start = i.toString()).organicResults
+                    _properties.value = _properties.value?.plus(ScholarApi.retrofitService.getProperties(start = i.toString()).organicResults)
                 }
             } catch (e: Exception) {
                 //Toast.makeText(application, "İnternet Bağlantınızı Kontrol Edin", Toast.LENGTH_SHORT).show()
