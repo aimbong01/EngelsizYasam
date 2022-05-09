@@ -1,13 +1,13 @@
 package com.engelsizyasam.auth
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.engelsizyasam.databinding.ActivityLoginBinding
-import com.engelsizyasam.view.MainActivity
+import com.engelsizyasam.presentation.main.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

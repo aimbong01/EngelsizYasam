@@ -6,19 +6,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.engelsizyasam.model.BookModel
 import com.engelsizyasam.databinding.CardItemBookBinding
-import com.engelsizyasam.view.BookFragmentDirections
+import com.engelsizyasam.domain.model.BookModel
+import com.engelsizyasam.presentation.book.BookFragmentDirections
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
-import kotlinx.coroutines.launch
 
 private lateinit var auth: FirebaseAuth
 private lateinit var databaseReference: DatabaseReference

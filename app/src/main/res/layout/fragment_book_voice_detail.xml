@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".view.BookVoiceDetailFragment">
+    tools:context=".presentation.book.BookVoiceDetailFragment">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.engelsizyasam.view.BookVoiceDetailViewModel" />
+            type="com.engelsizyasam.presentation.book.BookVoiceDetailViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView

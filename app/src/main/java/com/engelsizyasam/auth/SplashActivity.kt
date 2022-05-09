@@ -1,18 +1,17 @@
 package com.engelsizyasam.auth
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.engelsizyasam.databinding.ActivitySplashBinding
-import com.engelsizyasam.view.MainActivity
+import com.engelsizyasam.presentation.main.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import android.net.ConnectivityManager
-
-import android.content.Context
-import android.widget.Toast
 
 class SplashActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth

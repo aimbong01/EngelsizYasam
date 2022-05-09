@@ -1,0 +1,76 @@
+package com.engelsizyasam.presentation.seriesdetail
+
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import com.engelsizyasam.R
+import com.engelsizyasam.databinding.FragmentSeriesDetailBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
+class SeriesDetailFragment : Fragment() {
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+
+        val binding: FragmentSeriesDetailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_series_detail, container, false)
+        //val args = SeriesDetailFragmentArgs.fromBundle(requireArguments())
+        //val viewModelFactory = SeriesDetailViewModelFactory(args.playlistId, args.seriesName)
+
+        val viewModel = ViewModelProvider(this).get(SeriesDetailViewModel::class.java)
+
+        binding.lifecycleOwner = this
+
+        binding.viewModel = viewModel
+
+        val navBar: BottomNavigationView = requireActivity().findViewById(R.id.bottomBar)
+        navBar.visibility = View.INVISIBLE
+
+        binding.backButton.setOnClickListener {
+            it.findNavController().popBackStack()
+        }
+
+        val adapter = SeriesDetailAdapter(SeriesDetailListener { bookId ->
+            viewModel.onLinkClicked(bookId)
+        })
+
+
+        viewModel.openVideoLink.observe(viewLifecycleOwner, {
+            it?.let {
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=$it")))
+                viewModel.onLinkClickCompleted()
+            }
+        })
+
+
+
+        binding.recyclerView.adapter = adapter
+
+        viewModel.run()
+        viewModel.properties.observe(viewLifecycleOwner, {
+            adapter.data += it
+            binding.progressBar.visibility = View.GONE
+
+        })
+
+        return binding.root
+    }
+
+    override fun onPause() {
+        val navBar: BottomNavigationView = requireActivity().findViewById(R.id.bottomBar)
+        navBar.visibility = View.VISIBLE
+        super.onPause()
+    }
+
+
+}

@@ -6,11 +6,11 @@
     <data>
         <variable
             name="seriesModel"
-            type="com.engelsizyasam.model.SeriesModel.İtem" />
+            type="com.engelsizyasam.domain.model.Series.İtem" />
         <variable
 
             name="clickListener"
-            type="com.engelsizyasam.adapter.SeriesListener" />
+            type="com.engelsizyasam.presentation.series.SeriesListener" />
 
     </data>
 

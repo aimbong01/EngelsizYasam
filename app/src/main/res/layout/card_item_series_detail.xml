@@ -6,11 +6,11 @@
     <data>
         <variable
             name="seriesDetailModel"
-            type="com.engelsizyasam.model.SeriesDetailModel.İtem" />
+            type="com.engelsizyasam.domain.model.SeriesDetailModel.İtem" />
 
         <variable
             name="clickListener"
-            type="com.engelsizyasam.adapter.SeriesDetailListener" />
+            type="com.engelsizyasam.presentation.seriesdetail.SeriesDetailListener" />
     </data>
 
         <androidx.constraintlayout.widget.ConstraintLayout

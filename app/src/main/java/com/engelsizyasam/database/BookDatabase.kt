@@ -3,7 +3,7 @@ package com.engelsizyasam.database
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.engelsizyasam.model.BookModel
+import com.engelsizyasam.domain.model.BookModel
 
 @Dao
 interface BookDatabaseDao {
@@ -13,9 +13,6 @@ interface BookDatabaseDao {
 
     @Update
     suspend fun update(book: BookModel)
-
-    @Query("UPDATE book_table SET book_page = :page WHERE bookId = :bookId")
-    suspend fun updatePage(bookId: Int, page: Int)
 
     @Query("SELECT * FROM book_table ORDER BY bookId ASC")
     fun getAllBooks(): LiveData<List<BookModel>>

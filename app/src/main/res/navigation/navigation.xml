@@ -8,11 +8,11 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.engelsizyasam.view.MainFragment"
+        android:name="com.engelsizyasam.presentation.home.MainFragment"
         android:label="Anasayfa" />
     <fragment
         android:id="@+id/bookFragment"
-        android:name="com.engelsizyasam.view.BookFragment"
+        android:name="com.engelsizyasam.presentation.book.BookFragment"
         android:label="Kitaplar"
         tools:layout="@layout/fragment_book">
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/bookDetailFragment"
-        android:name="com.engelsizyasam.view.BookDetailFragment"
+        android:name="com.engelsizyasam.presentation.book.BookDetailFragment"
         android:label="Kitap">
         <argument
             android:name="bookId"
@@ -36,7 +36,7 @@
     </fragment>
     <fragment
         android:id="@+id/seriesDetailFragment"
-        android:name="com.engelsizyasam.view.SeriesDetailFragment"
+        android:name="com.engelsizyasam.presentation.seriesdetail.SeriesDetailFragment"
         android:label="Günlük Eğitici İçerik"
         tools:layout="@layout/fragment_series_detail">
         <argument
@@ -48,7 +48,7 @@
     </fragment>
     <fragment
         android:id="@+id/seriesFragment"
-        android:name="com.engelsizyasam.view.SeriesFragment"
+        android:name="com.engelsizyasam.presentation.series.SeriesFragment"
         android:label="fragment_series"
         tools:layout="@layout/fragment_series">
         <action
@@ -60,26 +60,8 @@
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
-        android:id="@+id/scholarFragment"
-        android:name="com.engelsizyasam.view.ScholarFragment"
-        android:label="fragment_scholar"
-        tools:layout="@layout/fragment_scholar" >
-        <action
-            android:id="@+id/action_scholarFragment_to_scholarDetailFragment"
-            app:destination="@id/scholarDetailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/scholarDetailFragment"
-        android:name="com.engelsizyasam.view.ScholarDetailFragment"
-        android:label="fragment_scholar_detail"
-        tools:layout="@layout/fragment_scholar_detail" >
-        <argument
-            android:name="link"
-            app:argType="string" />
-    </fragment>
-    <fragment
         android:id="@+id/bookVoiceDetailFragment"
-        android:name="com.engelsizyasam.view.BookVoiceDetailFragment"
+        android:name="com.engelsizyasam.presentation.book.BookVoiceDetailFragment"
         android:label="fragment_book_voice_detail"
         tools:layout="@layout/fragment_book_voice_detail" >
         <argument
@@ -88,7 +70,7 @@
     </fragment>
     <fragment
         android:id="@+id/newsFragment"
-        android:name="com.engelsizyasam.view.NewsFragment"
+        android:name="com.engelsizyasam.presentation.news.NewsFragment"
         android:label="fragment_news"
         tools:layout="@layout/fragment_news" />
 
