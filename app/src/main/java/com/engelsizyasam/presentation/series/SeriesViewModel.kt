@@ -1,72 +1,40 @@
 package com.engelsizyasam.presentation.series
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.engelsizyasam.domain.model.Series
-import com.engelsizyasam.network.SeriesApiService
+import com.engelsizyasam.common.Resource
+import com.engelsizyasam.domain.use_case.get_series.GetSeriesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
-class SeriesViewModel @Inject constructor(private val service: SeriesApiService) : ViewModel() {
+class SeriesViewModel @Inject constructor(private val getSeriesUseCase: GetSeriesUseCase) : ViewModel() {
 
-    private lateinit var base: Series
-    private var total: Int = 0
-    private var page: Int = 0
-    private var seriesPage: String = ""
-    var seriesName: String = ""
-
-    private val _properties = MutableLiveData<List<Series.İtem>>()
-    val properties: LiveData<List<Series.İtem>>
-        get() = _properties
-
-    private var job = Job() as Job
-
-    override fun onCleared() {
-        Log.e("cancel", "cancel")
-        job.cancel()
-        super.onCleared()
-    }
+    private val _uiState = MutableStateFlow(SeriesUiState())
+    val uiState: StateFlow<SeriesUiState> = _uiState
 
     init {
-        _properties.value = listOf()
-        job = viewModelScope.launch {
-            total = service.getProperties(pageToken = seriesPage).pageInfo.totalResults
-            page = if (total % 5 == 0)
-                total / 5
-            else
-                (total / 5) + 1
+        getSeries()
+    }
 
-            try {
-                for (i in 1..page) {
-                    base = service.getProperties(pageToken = seriesPage)
-                    _properties.value = _properties.value?.plus(base.items)
-                    seriesPage = base.nextPageToken
+    private fun getSeries() {
+        getSeriesUseCase().onEach { result ->
+            when(result) {
+                is Resource.Success -> {
+                    _uiState.value = SeriesUiState(series = result.data ?: emptyList())
                 }
-
-            } catch (e: Exception) {
-                //Log.e("hata", e.toString())
-                //Toast.makeText(application, "İnternet Bağlantınızı Kontrol Edin", Toast.LENGTH_SHORT).show()
+                is Resource.Error -> {
+                    _uiState.value = SeriesUiState(error = result.message ?: "An unexpected error occured.")
+                }
+                is Resource.Loading -> {
+                    _uiState.value = SeriesUiState(isLoading = true)
+                }
             }
-
-        }
-    }
-
-    private val _navigateToSeriesDetail = MutableLiveData<String?>()
-    val navigateToSeriesDetail
-        get() = _navigateToSeriesDetail
-
-    fun onSeriesClicked(id: String) {
-        _navigateToSeriesDetail.value = id
-    }
-
-    fun onSeriesDetailNavigated() {
-        _navigateToSeriesDetail.value = null
+        }.launchIn(viewModelScope)
     }
 
 }

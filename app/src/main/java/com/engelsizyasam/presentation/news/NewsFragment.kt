@@ -4,12 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.engelsizyasam.R
 import com.engelsizyasam.databinding.FragmentNewsBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -21,24 +19,23 @@ class NewsFragment : Fragment() {
     private val viewModel: NewsViewModel by viewModels()
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding: FragmentNewsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_news, container, false)
+        val binding = FragmentNewsBinding.inflate(inflater)
 
 
-        val organizationsAdapter = NewsAdapter(requireContext())
+        val adapter = NewsAdapter(requireContext())
         val recyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        recyclerView.adapter = organizationsAdapter
+        recyclerView.adapter = adapter
 
         lifecycleScope.launchWhenStarted {
             viewModel.uiState.collect { uiState ->
                 when {
                     uiState.news.isNotEmpty() -> {
-                        organizationsAdapter.data = uiState.news
+                        adapter.data = uiState.news
                     }
                     uiState.isLoading -> {}
                     uiState.error.isNotEmpty() -> {}

@@ -5,50 +5,40 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
-import com.engelsizyasam.R
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.engelsizyasam.databinding.FragmentSeriesBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class SeriesFragment : Fragment() {
-    private lateinit var binding: FragmentSeriesBinding
-    private lateinit var viewModel: SeriesViewModel
-    private lateinit var adapter: SeriesAdapter
+    private val viewModel: SeriesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_series, container, false)
-        viewModel = ViewModelProvider(this).get(SeriesViewModel::class.java)
-        binding.lifecycleOwner = this
+        val binding = FragmentSeriesBinding.inflate(inflater)
 
-        viewModel.navigateToSeriesDetail.observe(viewLifecycleOwner) {
-            it?.let {
-                findNavController().navigate(SeriesFragmentDirections.actionSeriesFragmentToSeriesDetailFragment(it, viewModel.seriesName))
-                viewModel.onSeriesDetailNavigated()
+        val adapter = SeriesAdapter()
+        val recyclerView = binding.recyclerView
+        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        recyclerView.adapter = adapter
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.uiState.collect { uiState ->
+                when {
+                    uiState.series.isNotEmpty() -> {
+                        adapter.data = uiState.series
+                    }
+                    uiState.isLoading -> {}
+                    uiState.error.isNotEmpty() -> {}
+                }
             }
-        }
-
-
-        adapter = SeriesAdapter(SeriesListener { playlistId, name ->
-            viewModel.seriesName = name
-            viewModel.onSeriesClicked(playlistId)
-
-        })
-
-        binding.recyclerView.adapter = adapter
-
-
-        viewModel.properties.observe(viewLifecycleOwner) {
-            adapter.data = it
-            adapter.notifyDataSetChanged()
-            //binding.progressBar.visibility = View.GONE
         }
 
         binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

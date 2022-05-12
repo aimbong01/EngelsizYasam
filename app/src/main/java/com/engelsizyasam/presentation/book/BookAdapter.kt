@@ -1,4 +1,4 @@
-package com.engelsizyasam.adapter
+package com.engelsizyasam.presentation.book
 
 import android.app.Application
 import android.content.Context
@@ -8,19 +8,19 @@ import android.view.ViewGroup
 import android.widget.Filter
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.engelsizyasam.databinding.CardItemBookBinding
+import com.engelsizyasam.databinding.ItemBookBinding
 import com.engelsizyasam.domain.model.BookModel
-import com.engelsizyasam.presentation.book.BookFragmentDirections
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 
-private lateinit var auth: FirebaseAuth
-private lateinit var databaseReference: DatabaseReference
-private lateinit var database: FirebaseDatabase
 
 class BookAdapter(private val application: Application) : RecyclerView.Adapter<BookAdapter.ViewHolder>() {
+
+    private var auth: FirebaseAuth = Firebase.auth
+    private var databaseReference: DatabaseReference
+    private var database: FirebaseDatabase = FirebaseDatabase.getInstance()
 
     var countryList = listOf<BookModel>()
         set(value) {
@@ -31,8 +31,6 @@ class BookAdapter(private val application: Application) : RecyclerView.Adapter<B
     var countryFilterList = ArrayList<BookModel>()
 
     init {
-        auth = Firebase.auth
-        database = FirebaseDatabase.getInstance()
         databaseReference = database.reference.child("profile")
 
         countryFilterList.addAll(countryList)
@@ -80,7 +78,7 @@ class BookAdapter(private val application: Application) : RecyclerView.Adapter<B
         holder.bind(item, application)
     }
 
-    class ViewHolder private constructor(val binding: CardItemBookBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(val binding: ItemBookBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: BookModel, context: Context) {
             val id = context.resources.getIdentifier("com.engelsizyasam:drawable/book_${item.bookImage}", null, null)
@@ -94,14 +92,12 @@ class BookAdapter(private val application: Application) : RecyclerView.Adapter<B
             val user = auth.currentUser
             val currentUserDb = databaseReference.child(user?.uid!!)
             val bookRef = currentUserDb.child("book")
-            //var state = 0
             bookRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.child(item.bookId.toString()).value == null) {
                         bookRef.child(item.bookId.toString()).setValue("0")
 
                     } else {
-                        Log.e("else","çalıştı")
                         val bookState = snapshot.child(item.bookId.toString()).value.toString()
 
                         if (bookState == "1") {
@@ -127,11 +123,6 @@ class BookAdapter(private val application: Application) : RecyclerView.Adapter<B
                 }
 
             })
-            /*Log.e("state", state.toString())
-            if (state == 1) {
-
-            }*/
-
 
             binding.pdfButton.setOnClickListener {
                 it.findNavController().navigate(BookFragmentDirections.actionBookFragmentToBookDetailFragment(item.bookId))
@@ -140,22 +131,15 @@ class BookAdapter(private val application: Application) : RecyclerView.Adapter<B
                 it.findNavController().navigate(BookFragmentDirections.actionBookFragmentToBookVoiceDetailFragment(item.bookId))
             }
 
-            /*binding.bookPdfClickListener = bookPdfClickListener
-            binding.bookVoiceClickListener = bookVoiceClickListener*/
-
         }
 
-        companion object {
-            fun from(parent: ViewGroup): ViewHolder {
-                val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = CardItemBookBinding.inflate(layoutInflater, parent, false)
-                return ViewHolder(binding)
-            }
-        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder.from(parent)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = ItemBookBinding.inflate(layoutInflater, parent, false)
+        return ViewHolder(binding)
     }
 
     override fun getItemCount() = when (count) {
@@ -164,13 +148,3 @@ class BookAdapter(private val application: Application) : RecyclerView.Adapter<B
     }
 
 }
-/*
-
-class BookPdfClickListener(val clickListener: (bookId: Int) -> Unit) {
-    fun onClick(bookModel: BookModel) = clickListener(bookModel.bookId)
-}
-
-class BookVoiceClickListener(val clickListener: (bookId: Int) -> Unit) {
-    fun onClick(bookModel: BookModel) = clickListener(bookModel.bookId)
-}
-*/

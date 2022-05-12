@@ -1,37 +1,32 @@
 package com.engelsizyasam.presentation.seriesdetail
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.engelsizyasam.R
 import com.engelsizyasam.databinding.FragmentSeriesDetailBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class SeriesDetailFragment : Fragment() {
+
+    private val viewModel: SeriesDetailViewModel by viewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        val binding: FragmentSeriesDetailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_series_detail, container, false)
-        //val args = SeriesDetailFragmentArgs.fromBundle(requireArguments())
-        //val viewModelFactory = SeriesDetailViewModelFactory(args.playlistId, args.seriesName)
-
-        val viewModel = ViewModelProvider(this).get(SeriesDetailViewModel::class.java)
-
-        binding.lifecycleOwner = this
-
-        binding.viewModel = viewModel
+        val binding = FragmentSeriesDetailBinding.inflate(inflater)
 
         val navBar: BottomNavigationView = requireActivity().findViewById(R.id.bottomBar)
         navBar.visibility = View.INVISIBLE
@@ -40,28 +35,30 @@ class SeriesDetailFragment : Fragment() {
             it.findNavController().popBackStack()
         }
 
-        val adapter = SeriesDetailAdapter(SeriesDetailListener { bookId ->
-            viewModel.onLinkClicked(bookId)
-        })
+        binding.textView.text = viewModel.seriesName
 
 
-        viewModel.openVideoLink.observe(viewLifecycleOwner, {
-            it?.let {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=$it")))
-                viewModel.onLinkClickCompleted()
+        val adapter = SeriesDetailAdapter(requireContext())
+        val recyclerView = binding.recyclerView
+        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        recyclerView.adapter = adapter
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.uiState.collect { uiState ->
+                when {
+                    uiState.seriesDetail.isNotEmpty() -> {
+                        binding.progressBar.visibility = View.GONE
+                        adapter.data = uiState.seriesDetail
+                    }
+                    uiState.isLoading -> {
+
+                    }
+                    uiState.error.isNotEmpty() -> {
+
+                    }
+                }
             }
-        })
-
-
-
-        binding.recyclerView.adapter = adapter
-
-        viewModel.run()
-        viewModel.properties.observe(viewLifecycleOwner, {
-            adapter.data += it
-            binding.progressBar.visibility = View.GONE
-
-        })
+        }
 
         return binding.root
     }

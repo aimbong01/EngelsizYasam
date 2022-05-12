@@ -1,8 +1,7 @@
 package com.engelsizyasam.domain.model
 
 
-data class Series(
-    val id: String?,
+data class SeriesDetail(
     val title: String?,
     val url: String?,
 )

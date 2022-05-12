@@ -1,21 +1,20 @@
 package com.engelsizyasam.presentation.seriesdetail
 
-import android.util.Log
-import androidx.lifecycle.*
-import com.engelsizyasam.domain.model.SeriesDetailModel
-import com.engelsizyasam.network.SeriesDetailApiService
-
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.engelsizyasam.common.Resource
+import com.engelsizyasam.domain.use_case.get_series_detail.GetSeriesDetailUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
-class SeriesDetailViewModel @Inject constructor(savedStateHandle: SavedStateHandle,private val service: SeriesDetailApiService) : ViewModel() {
-
-    private lateinit var base: SeriesDetailModel
-    private var total: Int = 0
-    private var page: Int = 0
-    private var seriesPage: String = ""
+class SeriesDetailViewModel @Inject constructor(savedStateHandle: SavedStateHandle,private val getSeriesDetailUseCase: GetSeriesDetailUseCase) : ViewModel() {
 
     private val _seriesName = savedStateHandle.get<String>("seriesName").toString()
     val seriesName: String
@@ -23,55 +22,28 @@ class SeriesDetailViewModel @Inject constructor(savedStateHandle: SavedStateHand
 
     private var playlistId = savedStateHandle.get<String>("playlistId").toString()
 
-    private val _properties = MutableLiveData<List<SeriesDetailModel.İtem>>()
-    val properties: LiveData<List<SeriesDetailModel.İtem>>
-        get() = _properties
+    private val _uiState = MutableStateFlow(SeriesDetailUiState())
+    val uiState: StateFlow<SeriesDetailUiState> = _uiState
 
-    fun run() {
-        viewModelScope.launch {
-            total = service.getProperties(pageToken = seriesPage, playlistId = playlistId).pageInfo.totalResults
-            page = if (total % 50 == 0)
-                total / 50
-            else
-                (total / 50) + 1
-            Log.e("total", total.toString())
+    init {
+        getSeriesDetail()
+    }
 
-            try {
-                for (i in 1..page) {
-                    base = service.getProperties(pageToken = seriesPage, playlistId = playlistId)
-                    _properties.value = base.items
-                    seriesPage = base.nextPageToken
+    private fun getSeriesDetail() {
+        getSeriesDetailUseCase.playlistId = playlistId
+        getSeriesDetailUseCase().onEach { result ->
+            when (result) {
+                is Resource.Success -> {
+                    _uiState.value = SeriesDetailUiState(seriesDetail = result.data ?: emptyList())
                 }
-
-                _properties.value = listOf()
-
-            } catch (e: Exception) {
-                //Toast.makeText(application, "İnternet Bağlantınızı Kontrol Edin", Toast.LENGTH_SHORT).show()
+                is Resource.Error -> {
+                    _uiState.value = SeriesDetailUiState(error = result.message ?: "An unexpected error occured.")
+                }
+                is Resource.Loading -> {
+                    _uiState.value = SeriesDetailUiState(isLoading = true)
+                }
             }
-
-        }
+        }.launchIn(viewModelScope)
     }
 
-    private val _openVideoLink = MutableLiveData<String?>()
-    val openVideoLink
-        get() = _openVideoLink
-
-    fun onLinkClicked(id: String) {
-        _openVideoLink.value = id
-    }
-
-    fun onLinkClickCompleted() {
-        _openVideoLink.value = null
-    }
 }
-
-/*
-class SeriesDetailViewModelFactory(private val playlistId: String, private val seriesName: String) : ViewModelProvider.Factory {
-    @Suppress("unchecked_cast")
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(SeriesDetailViewModel::class.java)) {
-            return SeriesDetailViewModel(playlistId, seriesName) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-}*/

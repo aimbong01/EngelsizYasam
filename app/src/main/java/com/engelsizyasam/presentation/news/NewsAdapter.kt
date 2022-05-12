@@ -6,7 +6,7 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.engelsizyasam.databinding.CardItemNewsBinding
+import com.engelsizyasam.databinding.ItemNewsBinding
 import com.engelsizyasam.domain.model.News
 import com.squareup.picasso.Picasso
 
@@ -23,7 +23,7 @@ class NewsAdapter(private val context: Context) : RecyclerView.Adapter<NewsAdapt
         holder.bind(item, context)
     }
 
-    class ViewHolder private constructor(val binding: CardItemNewsBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(val binding: ItemNewsBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: News, context: Context) {
             Picasso.get().load(item.urlToImage).into(binding.haberResmi)
             binding.haberBaslik.text = item.title
@@ -31,18 +31,12 @@ class NewsAdapter(private val context: Context) : RecyclerView.Adapter<NewsAdapt
                 context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("${item.url}")))
             }
         }
-
-        companion object {
-            fun from(parent: ViewGroup): ViewHolder {
-                val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = CardItemNewsBinding.inflate(layoutInflater, parent, false)
-                return ViewHolder(binding)
-            }
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder.from(parent)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = ItemNewsBinding.inflate(layoutInflater, parent, false)
+        return ViewHolder(binding)
     }
 
     override fun getItemCount() = data.size

@@ -6,14 +6,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.engelsizyasam.database.BookDatabaseDao
+import com.engelsizyasam.data.local.BookDao
 import com.engelsizyasam.domain.model.BookModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class BookVoiceDetailViewModel @Inject constructor(savedStateHandle: SavedStateHandle, database: BookDatabaseDao) : ViewModel() {
-
+class BookVoiceDetailViewModel @Inject constructor(savedStateHandle: SavedStateHandle, database: BookDao) : ViewModel() {
 
     var mediaPlayer: MediaPlayer? = null
 
@@ -79,14 +78,3 @@ class BookVoiceDetailViewModel @Inject constructor(savedStateHandle: SavedStateH
         _totalDuration.value = total
     }
 }
-
-/*
-class BookVoiceDetailViewModelFactory(private val bookId: Int, private val dataSource: BookDatabaseDao) : ViewModelProvider.Factory {
-    @Suppress("unchecked_cast")
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(BookVoiceDetailViewModel::class.java)) {
-            return BookVoiceDetailViewModel(bookId, dataSource) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-}*/

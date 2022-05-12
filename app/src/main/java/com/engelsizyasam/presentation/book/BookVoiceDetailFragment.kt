@@ -31,9 +31,7 @@ class BookVoiceDetailFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_book_voice_detail, container, false)
         val application = requireNotNull(this.activity).application
-        //val arguments: BookVoiceDetailFragmentArgs by navArgs()
-        //val dataSource = BookDatabase.getInstance(application).bookDatabaseDao
-        //val viewModelFactory = BookVoiceDetailViewModelFactory(arguments.bookId, dataSource)
+
         viewModel = ViewModelProvider(this).get(BookVoiceDetailViewModel::class.java)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -46,7 +44,7 @@ class BookVoiceDetailFragment : Fragment() {
             it.findNavController().popBackStack()
         }
 
-        viewModel.getBook().observe(viewLifecycleOwner, { book ->
+        viewModel.getBook().observe(viewLifecycleOwner) { book ->
 
             if (viewModel.mediaPlayer == null) {
 
@@ -98,7 +96,7 @@ class BookVoiceDetailFragment : Fragment() {
 
             })
 
-        })
+        }
 
         return binding.root
     }

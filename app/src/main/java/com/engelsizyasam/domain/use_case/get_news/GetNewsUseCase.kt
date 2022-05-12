@@ -1,9 +1,9 @@
 package com.engelsizyasam.domain.use_case.get_news
 
-import com.engelsizyasam.domain.repository.NewsRepository
 import com.engelsizyasam.common.Resource
 import com.engelsizyasam.data.remote.dto.toNews
 import com.engelsizyasam.domain.model.News
+import com.engelsizyasam.domain.repository.NewsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException

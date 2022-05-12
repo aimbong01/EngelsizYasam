@@ -1,317 +1,314 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".presentation.home.MainFragment">
 
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/header"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_header"
+                android:padding="16dp"
+                app:layout_constraintTop_toTopOf="parent">
 
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/header"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/shape_header"
-                    android:padding="16dp"
-                    app:layout_constraintTop_toTopOf="parent">
-
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/profile_image"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
-                        android:layout_marginLeft="16dp"
-                        app:civ_border_color="@color/button"
-                        app:civ_border_width="1dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/hosgeldin"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="40dp"
-                        android:layout_marginTop="5dp"
-                        android:text=""
-                        android:textColor="@color/bg"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toEndOf="@+id/profile_image"
-                        app:layout_constraintTop_toTopOf="@+id/profile_image" />
-
-                    <TextView
-                        android:id="@+id/cikisYap"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="40dp"
-                        android:layout_marginBottom="5dp"
-                        android:text="Çıkış Yap"
-                        android:textColor="@color/bg"
-                        app:layout_constraintBottom_toBottomOf="@+id/profile_image"
-                        app:layout_constraintStart_toEndOf="@+id/profile_image" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <LinearLayout
-                    android:id="@+id/content"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:baselineAligned="false"
-                    android:orientation="horizontal"
-                    android:padding="16dp"
-                    app:layout_constraintTop_toBottomOf="@+id/header">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/shape_mini_table"
-                        android:paddingTop="20dp"
-                        android:paddingBottom="20dp">
-
-                        <ImageView
-                            android:id="@+id/gender"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/main_gender"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/toplam"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:gravity="center"
-                            android:text="Toplam Engelli Sayısı"
-                            android:textColor="@color/text"
-                            android:textSize="14sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/gender" />
-
-                        <TextView
-                            android:id="@+id/toplamSayi"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:text="2511950"
-                            android:textColor="@color/content"
-                            android:textSize="16sp"
-                            app:layout_constraintEnd_toEndOf="@+id/toplam"
-                            app:layout_constraintStart_toStartOf="@+id/toplam"
-                            app:layout_constraintTop_toBottomOf="@+id/toplam" />
-
-                        <TextView
-                            android:id="@+id/toplamSayiKalin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:text="2.5M+"
-                            android:textColor="@color/content"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            app:layout_constraintEnd_toEndOf="@+id/toplamSayi"
-                            app:layout_constraintStart_toStartOf="@+id/toplamSayi"
-                            app:layout_constraintTop_toBottomOf="@+id/toplamSayi" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/shape_mini_table"
-                        android:paddingTop="20dp"
-                        android:paddingBottom="20dp">
-
-                        <ImageView
-                            android:id="@+id/male"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/main_male"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/erkek"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:gravity="center"
-                            android:text="Erkek Engelli Sayısı"
-                            android:textColor="@color/text"
-                            android:textSize="14sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/male" />
-
-                        <TextView
-                            android:id="@+id/erkekSayi"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:text="1414643"
-                            android:textColor="@color/content"
-                            android:textSize="16sp"
-                            app:layout_constraintEnd_toEndOf="@+id/erkek"
-                            app:layout_constraintStart_toStartOf="@+id/erkek"
-                            app:layout_constraintTop_toBottomOf="@+id/erkek" />
-
-                        <TextView
-                            android:id="@+id/erkekSayiKalin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:text="1.4M+"
-                            android:textColor="@color/content"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            app:layout_constraintEnd_toEndOf="@+id/erkekSayi"
-                            app:layout_constraintStart_toStartOf="@+id/erkekSayi"
-                            app:layout_constraintTop_toBottomOf="@+id/erkekSayi" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/shape_mini_table"
-                        android:paddingTop="20dp"
-                        android:paddingBottom="20dp">
-
-                        <ImageView
-                            android:id="@+id/female"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/main_female"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/kadin"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:gravity="center"
-                            android:text="Kadın Engelli Sayısı"
-                            android:textColor="@color/text"
-                            android:textSize="14sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/female" />
-
-                        <TextView
-                            android:id="@+id/kadinSayi"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:text="1097307"
-                            android:textColor="@color/content"
-                            android:textSize="16sp"
-                            app:layout_constraintEnd_toEndOf="@+id/kadin"
-                            app:layout_constraintStart_toStartOf="@+id/kadin"
-                            app:layout_constraintTop_toBottomOf="@+id/kadin" />
-
-                        <TextView
-                            android:id="@+id/kadinSayiKalin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:text="1M+"
-                            android:textColor="@color/content"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            app:layout_constraintEnd_toEndOf="@+id/kadinSayi"
-                            app:layout_constraintStart_toStartOf="@+id/kadinSayi"
-                            app:layout_constraintTop_toBottomOf="@+id/kadinSayi" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </LinearLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/content2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="30dp"
-                    app:layout_constraintEnd_toEndOf="parent"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_marginLeft="16dp"
+                    app:civ_border_color="@color/button"
+                    app:civ_border_width="1dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/content">
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <ImageView
-                        android:id="@+id/engelleriKaldir"
-                        android:layout_width="wrap_content"
-                        android:layout_height="150dp"
-                        android:src="@drawable/main_engelleri_kaldir"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageButton
-                        android:id="@+id/instagram"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="50dp"
-                        android:background="@null"
-                        android:src="@drawable/selector_instagram"
-                        app:layout_constraintBottom_toBottomOf="@+id/youtube"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/youtube" />
-
-                    <ImageButton
-                        android:id="@+id/youtube"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:src="@drawable/selector_youtube"
-                        app:layout_constraintEnd_toStartOf="@+id/twitter"
-                        app:layout_constraintStart_toEndOf="@+id/instagram"
-                        app:layout_constraintTop_toBottomOf="@+id/engelleriKaldir" />
-
-                    <ImageButton
-                        android:id="@+id/twitter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="50dp"
-                        android:background="@null"
-                        android:src="@drawable/selector_twitter"
-                        app:layout_constraintBottom_toBottomOf="@+id/youtube"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/youtube" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                <ProgressBar
-                    android:id="@+id/progressBar"
-                    style="?android:attr/progressBarStyle"
+                <TextView
+                    android:id="@+id/hosgeldin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:indeterminateDrawable="@drawable/shape_progress"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/header" />
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="5dp"
+                    android:text=""
+                    android:textColor="@color/bg"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/profile_image"
+                    app:layout_constraintTop_toTopOf="@+id/profile_image" />
+
+                <TextView
+                    android:id="@+id/cikisYap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Çıkış Yap"
+                    android:textColor="@color/bg"
+                    app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+                    app:layout_constraintStart_toEndOf="@+id/profile_image" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-</layout>
+
+            <LinearLayout
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/header">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_mini_table"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp">
+
+                    <ImageView
+                        android:id="@+id/gender"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/main_gender"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/toplam"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="Toplam Engelli Sayısı"
+                        android:textColor="@color/text"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/gender" />
+
+                    <TextView
+                        android:id="@+id/toplamSayi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="2511950"
+                        android:textColor="@color/content"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="@+id/toplam"
+                        app:layout_constraintStart_toStartOf="@+id/toplam"
+                        app:layout_constraintTop_toBottomOf="@+id/toplam" />
+
+                    <TextView
+                        android:id="@+id/toplamSayiKalin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="2.5M+"
+                        android:textColor="@color/content"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@+id/toplamSayi"
+                        app:layout_constraintStart_toStartOf="@+id/toplamSayi"
+                        app:layout_constraintTop_toBottomOf="@+id/toplamSayi" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_mini_table"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp">
+
+                    <ImageView
+                        android:id="@+id/male"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/main_male"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/erkek"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="Erkek Engelli Sayısı"
+                        android:textColor="@color/text"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/male" />
+
+                    <TextView
+                        android:id="@+id/erkekSayi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="1414643"
+                        android:textColor="@color/content"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="@+id/erkek"
+                        app:layout_constraintStart_toStartOf="@+id/erkek"
+                        app:layout_constraintTop_toBottomOf="@+id/erkek" />
+
+                    <TextView
+                        android:id="@+id/erkekSayiKalin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="1.4M+"
+                        android:textColor="@color/content"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@+id/erkekSayi"
+                        app:layout_constraintStart_toStartOf="@+id/erkekSayi"
+                        app:layout_constraintTop_toBottomOf="@+id/erkekSayi" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_mini_table"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp">
+
+                    <ImageView
+                        android:id="@+id/female"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/main_female"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/kadin"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="Kadın Engelli Sayısı"
+                        android:textColor="@color/text"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/female" />
+
+                    <TextView
+                        android:id="@+id/kadinSayi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="1097307"
+                        android:textColor="@color/content"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="@+id/kadin"
+                        app:layout_constraintStart_toStartOf="@+id/kadin"
+                        app:layout_constraintTop_toBottomOf="@+id/kadin" />
+
+                    <TextView
+                        android:id="@+id/kadinSayiKalin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="1M+"
+                        android:textColor="@color/content"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@+id/kadinSayi"
+                        app:layout_constraintStart_toStartOf="@+id/kadinSayi"
+                        app:layout_constraintTop_toBottomOf="@+id/kadinSayi" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/content2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/content">
+
+                <ImageView
+                    android:id="@+id/engelleriKaldir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+                    android:src="@drawable/main_engelleri_kaldir"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/instagram"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:background="@null"
+                    android:src="@drawable/selector_instagram"
+                    app:layout_constraintBottom_toBottomOf="@+id/youtube"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/youtube" />
+
+                <ImageButton
+                    android:id="@+id/youtube"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:src="@drawable/selector_youtube"
+                    app:layout_constraintEnd_toStartOf="@+id/twitter"
+                    app:layout_constraintStart_toEndOf="@+id/instagram"
+                    app:layout_constraintTop_toBottomOf="@+id/engelleriKaldir" />
+
+                <ImageButton
+                    android:id="@+id/twitter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="50dp"
+                    android:background="@null"
+                    android:src="@drawable/selector_twitter"
+                    app:layout_constraintBottom_toBottomOf="@+id/youtube"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/youtube" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminateDrawable="@drawable/shape_progress"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/header" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

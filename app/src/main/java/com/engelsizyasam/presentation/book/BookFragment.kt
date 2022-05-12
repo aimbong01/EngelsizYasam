@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.engelsizyasam.R
-import com.engelsizyasam.adapter.BookAdapter
 import com.engelsizyasam.databinding.FragmentBookBinding
 import com.engelsizyasam.domain.model.BookModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,8 +25,6 @@ class BookFragment : Fragment() {
         val binding: FragmentBookBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_book, container, false)
 
         val application = requireNotNull(this.activity).application
-        //val dataSource = BookDatabase.getInstance(application).bookDatabaseDao
-        //val viewModelFactory = BookViewModelFactory(dataSource)
 
         val bookViewModel = ViewModelProvider(this).get(BookViewModel::class.java)
 
@@ -35,9 +32,9 @@ class BookFragment : Fragment() {
 
         binding.recyclerView.adapter = adapter
 
-        bookViewModel.books.observe(viewLifecycleOwner, {
+        bookViewModel.books.observe(viewLifecycleOwner) {
             adapter.countryList = it
-        })
+        }
 
         binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {

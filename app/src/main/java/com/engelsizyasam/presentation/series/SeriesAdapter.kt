@@ -3,21 +3,22 @@ package com.engelsizyasam.presentation.series
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.engelsizyasam.databinding.CardItemSeriesBinding
+import com.engelsizyasam.databinding.ItemSeriesBinding
 import com.engelsizyasam.domain.model.Series
 import com.squareup.picasso.Picasso
 
-class SeriesAdapter(private val clickListener: SeriesListener) : RecyclerView.Adapter<SeriesAdapter.ViewHolder>() {
+class SeriesAdapter : RecyclerView.Adapter<SeriesAdapter.ViewHolder>() {
 
-    var data = listOf<Series.İtem>()
+    var data = listOf<Series>()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
 
-    var seriesFilterList = ArrayList<Series.İtem>()
+    var seriesFilterList = ArrayList<Series>()
 
     init {
         seriesFilterList.addAll(data)
@@ -31,11 +32,11 @@ class SeriesAdapter(private val clickListener: SeriesListener) : RecyclerView.Ad
                 count = 0
                 val charSearch = constraint.toString()
                 if (charSearch.isEmpty()) {
-                    seriesFilterList = data as ArrayList<Series.İtem>
+                    seriesFilterList = data as ArrayList<Series>
                 } else {
-                    val resultList = ArrayList<Series.İtem>()
+                    val resultList = ArrayList<Series>()
                     for (row in data) {
-                        if (row.snippet.title.toLowerCase().contains(constraint.toString().toLowerCase())) {
+                        if (row.title?.toLowerCase()?.contains(constraint.toString().toLowerCase()) == true) {
                             resultList.add(row)
                         }
                     }
@@ -50,7 +51,7 @@ class SeriesAdapter(private val clickListener: SeriesListener) : RecyclerView.Ad
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
                 if (results!!.count > 0) {
-                    seriesFilterList = results.values as ArrayList<Series.İtem>
+                    seriesFilterList = results.values as ArrayList<Series>
                 }
                 notifyDataSetChanged()
 
@@ -63,30 +64,27 @@ class SeriesAdapter(private val clickListener: SeriesListener) : RecyclerView.Ad
             0 -> data[position]
             else -> seriesFilterList[position]
         }
-        holder.bind(item, clickListener)
+        holder.bind(item)
 
     }
 
-    class ViewHolder private constructor(val binding: CardItemSeriesBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(val binding: ItemSeriesBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Series.İtem, clickListener: SeriesListener) {
-            binding.seriesModel = item
-            Picasso.get().load(item.snippet.thumbnails.medium.url).into(binding.image)
-            binding.clickListener = clickListener
+        fun bind(item: Series) {
+            Picasso.get().load(item.url).into(binding.image)
+            binding.image.setOnClickListener {
+                it.findNavController().navigate(SeriesFragmentDirections.actionSeriesFragmentToSeriesDetailFragment(item.id, item.title))
 
-        }
-
-        companion object {
-            fun from(parent: ViewGroup): ViewHolder {
-                val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = CardItemSeriesBinding.inflate(layoutInflater, parent, false)
-                return ViewHolder(binding)
             }
+
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder.from(parent)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = ItemSeriesBinding.inflate(layoutInflater, parent, false)
+        return ViewHolder(binding)
     }
 
     override fun getItemCount() = when (count) {
@@ -94,8 +92,4 @@ class SeriesAdapter(private val clickListener: SeriesListener) : RecyclerView.Ad
         else -> seriesFilterList.size
     }
 
-}
-
-class SeriesListener(val clickListener: (link: String, link2: String) -> Unit) {
-    fun onClick(seriesModel: Series.İtem) = clickListener(seriesModel.id, seriesModel.snippet.title)
 }

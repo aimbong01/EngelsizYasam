@@ -1,4 +1,4 @@
-package com.engelsizyasam.auth
+package com.engelsizyasam.presentation.auth
 
 import android.app.Activity
 import android.content.Intent

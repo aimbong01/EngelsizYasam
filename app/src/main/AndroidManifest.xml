@@ -14,7 +14,7 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".auth.SplashActivity"
+        <activity android:name=".presentation.auth.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,10 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".auth.LoginActivity">
+        <activity android:name=".presentation.auth.LoginActivity">
 
         </activity>
-        <activity android:name=".auth.RegisterActivity" />
+        <activity android:name=".presentation.auth.RegisterActivity" />
         <activity android:name=".presentation.main.MainActivity" />
 
     </application>

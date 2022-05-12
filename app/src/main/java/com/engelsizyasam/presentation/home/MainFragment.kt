@@ -8,10 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.engelsizyasam.R
-import com.engelsizyasam.auth.LoginActivity
+import com.engelsizyasam.presentation.auth.LoginActivity
 import com.engelsizyasam.databinding.FragmentMainBinding
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.google.firebase.auth.FirebaseAuth
@@ -38,7 +37,7 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
+        binding = FragmentMainBinding.inflate(inflater)
 
         auth = Firebase.auth
         val user = auth.currentUser
